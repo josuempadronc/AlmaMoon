@@ -23,10 +23,27 @@
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('orders.create') }}" class="btn btn-primary btn-sm float-right"
-                                    data-placement="left">
-                                    <i class="bi bi-plus-circle"></i>
-                                </a>
+                                @auth
+                                    @if (auth()->user()->role === '1')
+                                        <a href="{{ route('orders.create') }}" class="btn btn-primary btn-sm float-right"
+                                            data-placement="left">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </a>
+                                    @endif
+                                    @if (auth()->user()->role === '2')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-x-octagon"></i>
+                                        </button>
+                                    @endif
+                                    @if (auth()->user()->role === '7')
+                                        <a href="{{ route('orders.create') }}" class="btn btn-primary btn-sm float-right"
+                                            data-placement="left">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </a>
+                                    @endif
+
+                                @endauth
+
                             </div>
                         </div>
                     </div>
@@ -65,22 +82,57 @@
                                                 <td>{{ $order->status }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('orders.destroy', $order->id) }}"
-                                                        method="POST">
-                                                        <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('orders.show', $order->id) }}">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                        </a>
-                                                        <a class="btn btn-sm btn-success"
-                                                            href="{{ route('orders.edit', $order->id) }}">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="bi bi-trash-fill"></i>
-                                                        </button>
-                                                    </form>
+                                                    @auth
+                                                        @if (auth()->user()->role === '1')
+                                                            <form action="{{ route('orders.destroy', $order->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('orders.show', $order->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-success"
+                                                                    href="{{ route('orders.edit', $order->id) }}">
+                                                                    <i class="bi bi-pencil-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                        @if (auth()->user()->role === '2')
+                                                            <form action="{{ route('orders.destroy', $order->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('orders.show', $order->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                        @endif
+                                                        @if (auth()->user()->role === '7')
+                                                            <form action="{{ route('orders.destroy', $order->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('orders.show', $order->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-success"
+                                                                    href="{{ route('orders.edit', $order->id) }}">
+                                                                    <i class="bi bi-pencil-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+
+                                                    @endauth
+
                                                 </td>
                                             </tr>
                                         @endforeach

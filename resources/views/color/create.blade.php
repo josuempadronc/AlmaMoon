@@ -18,9 +18,24 @@
                             <div class="float-right">
                                 <div class="float-right">
                                     <div class="float-right">
-                                        <a class="btn btn-primary" href="{{ route('color.index') }}">
-                                            <i class="bi bi-backspace"></i>
-                                        </a>
+                                        @auth
+                                            @if (auth()->user()->role === '1')
+                                            <a class="btn btn-primary" href="{{ route('admin/color.index') }}">
+                                                <i class="bi bi-backspace"></i>
+                                            </a>
+                                            @endif
+                                            @if (auth()->user()->role === '2')
+                                            <a class="btn btn-primary" href="{{ route('color.index') }}">
+                                                <i class="bi bi-backspace"></i>
+                                            </a>
+                                            @endif
+                                            @if (auth()->user()->role === '7')
+                                            <a class="btn btn-primary" href="{{ route('ventas/color.index') }}">
+                                                <i class="bi bi-backspace"></i>
+                                            </a>
+                                            @endif
+
+                                        @endauth
                                     </div>
                                 </div>
                             </div>

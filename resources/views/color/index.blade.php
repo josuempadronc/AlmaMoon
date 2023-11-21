@@ -22,10 +22,23 @@
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('color.create') }}" class="btn btn-primary btn-sm float-right"
-                                    data-placement="left">
-                                    <i class="bi bi-plus-circle"></i>
-                                </a>
+                                @auth
+                                    @if (auth()->user()->role === '1')
+                                        <a href="{{ route('color.create') }}" class="btn btn-primary btn-sm float-right"
+                                            data-placement="left">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </a>
+                                    @endif
+                                    @if (auth()->user()->role === '2')
+                                        <a href="{{ route('color.create') }}" class="btn btn-primary btn-sm float-right"
+                                            data-placement="left">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </a>
+                                    @endif
+                                    @if (auth()->user()->role === '7')
+                                    @endif
+
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -51,21 +64,40 @@
                                                 <td>{{ $color->name }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('color.destroy', $color->id) }}" method="POST">
-                                                        <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('color.show', $color->id) }}">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                        </a>
-                                                        <a class="btn btn-sm btn-success"
-                                                            href="{{ route('color.edit', $color->id) }}">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="bi bi-trash-fill"></i>
-                                                        </button>
-                                                    </form>
+                                                    @auth
+                                                        @if (auth()->user()->role === '1')
+                                                            <form action="{{ route('color.destroy', $color->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('color.show', $color->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-success"
+                                                                    href="{{ route('color.edit', $color->id) }}">
+                                                                    <i class="bi bi-pencil-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                        @if (auth()->user()->role === '2')
+                                                            <form action="{{ route('color.destroy', $color->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('color.show', $color->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    @endauth
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -74,9 +106,6 @@
                             @endif
                             </tbody>
                             </table>
-                        </div>
-                        <div class="d-flex justify-content-center mt-2">
-                            {!! $colors->links() !!}
                         </div>
                     </div>
                 </div>

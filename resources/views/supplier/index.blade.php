@@ -50,22 +50,41 @@
                                                 <td>{{ $supplier->name }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('suppliers.destroy', $supplier->id) }}"
-                                                        method="POST">
-                                                        <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('suppliers.show', $supplier->id) }}">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                        </a>
-                                                        <a class="btn btn-sm btn-success"
-                                                            href="{{ route('suppliers.edit', $supplier->id) }}">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="bi bi-trash-fill"></i>
-                                                        </button>
-                                                    </form>
+                                                    @auth
+                                                        @if (auth()->user()->role === '1')
+                                                            <form action="{{ route('suppliers.destroy', $supplier->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('suppliers.show', $supplier->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-success"
+                                                                    href="{{ route('suppliers.edit', $supplier->id) }}">
+                                                                    <i class="bi bi-pencil-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                        @if (auth()->user()->role === '2')
+                                                            <form action="{{ route('suppliers.destroy', $supplier->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('suppliers.show', $supplier->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    @endauth
+
                                                 </td>
                                             </tr>
                                         @endforeach

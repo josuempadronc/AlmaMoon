@@ -50,22 +50,41 @@
                                                 <td>{{ $origin->name }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('origins.destroy', $origin->id) }}"
-                                                        method="POST">
-                                                        <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('origins.show', $origin->id) }}">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                        </a>
-                                                        <a class="btn btn-sm btn-success"
-                                                            href="{{ route('origins.edit', $origin->id) }}">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="bi bi-trash-fill"></i>
-                                                        </button>
-                                                    </form>
+                                                    @auth
+                                                        @if (auth()->user()->role === '1')
+                                                            <form action="{{ route('origins.destroy', $origin->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('origins.show', $origin->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-success"
+                                                                    href="{{ route('origins.edit', $origin->id) }}">
+                                                                    <i class="bi bi-pencil-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                        @if (auth()->user()->role === '2')
+                                                            <form action="{{ route('origins.destroy', $origin->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('origins.show', $origin->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    @endauth
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -77,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $origins->links() !!}
+                {{-- {!! $origins->links() !!} --}}
             </div>
         </div>
     </div>

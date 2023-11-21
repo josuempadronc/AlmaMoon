@@ -50,22 +50,54 @@
                                                 <td>{{ $rawMaterial->name }}</td>
 
                                                 <td>
-                                                    <form action="{{ route('raw-materials.destroy', $rawMaterial->id) }}"
-                                                        method="POST">
-                                                        <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('raw-materials.show', $rawMaterial->id) }}">
-                                                            <i class="bi bi-eye-fill"></i>
-                                                        </a>
-                                                        <a class="btn btn-sm btn-success"
-                                                            href="{{ route('raw-materials.edit', $rawMaterial->id) }}">
-                                                            <i class="bi bi-pencil-fill"></i>
-                                                        </a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="bi bi-trash-fill"></i>
-                                                        </button>
-                                                    </form>
+                                                    @auth
+                                                        @if (auth()->user()->role === '1')
+                                                            <form
+                                                                action="{{ route('raw-materials.destroy', $rawMaterial->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('raw-materials.show', $rawMaterial->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                <a class="btn btn-sm btn-success"
+                                                                    href="{{ route('raw-materials.edit', $rawMaterial->id) }}">
+                                                                    <i class="bi bi-pencil-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                        @if (auth()->user()->role === '2')
+                                                            <form
+                                                                action="{{ route('raw-materials.destroy', $rawMaterial->id) }}"
+                                                                method="POST">
+                                                                <a class="btn btn-sm btn-primary "
+                                                                    href="{{ route('raw-materials.show', $rawMaterial->id) }}">
+                                                                    <i class="bi bi-eye-fill"></i>
+                                                                </a>
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                        @if (auth()->user()->role === '7')
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="bi bi-x-octagon"></i>
+                                                            </button>
+                                                        @endif
+                                                        @if (auth()->user()->role === '8')
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="bi bi-x-octagon"></i>
+                                                            </button>
+                                                        @endif
+
+                                                    @endauth
+
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -44,9 +44,6 @@
                             @else
                                 <h4 class="text-center">No hay registros</h4>
                             @endif
-                                <div>
-                                    hola mundo
-                                </div>
                         </div>
                     </div>
 
