@@ -1,0 +1,72 @@
+// Fonts
+@import url("https://fonts.bunny.net/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+
+// Acoordeon
+.accordion-button:not(.collapsed) {
+    background: #152193;
+    color: #fff !important;
+}
+.accordion-button:hover {
+    background-color: rgba(21, 33, 147, 1) !important;
+    color: #fff !important;
+    border-radius: 10px !important;
+    border: none;
+}
+
+button.accordion-button {
+    background: #152193;
+    color: #fff !important;
+}
+button.accordion-button {
+    background: #152193;
+    color: #fff !important;
+}
+.accordion-item {
+    background: #152193;
+    color: #fff !important;
+}
+.accordion-flush .accordion-item:first-child {
+    border-top: 0;
+    border-bottom: 0;
+}
+.accordion-item:not(:first-of-type) {
+    border-top: 0;
+    border-bottom: 0;
+}
+// End Acoordeon
+// Link Menu
+a.nav-link.p-2.mb-2 {
+    width: 200px;
+}
+// End Link Menu
+// div collapse
+.card.card-body {
+    height: 300px;
+    overflow: overlay;
+    border: solid 1px #152193;
+
+}
+.card.card-body::-webkit-scrollbar {
+    display: none;  /* Ocultar scroll */
+}
+// End collapse
+.despacho{
+    height: 495px;
+    overflow: overlay;
+    width: 209px;
+    border: solid 1px #152193;
+    border-radius: 10px;
+}
+.despacho::-webkit-scrollbar {
+    display: none;  /* Ocultar scroll */
+}
+
+
