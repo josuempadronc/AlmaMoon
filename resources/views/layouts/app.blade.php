@@ -111,7 +111,7 @@
 
                                     </div>
                                     <div class="accordion-item"
-                                        style="position: relative; display: block; margin-top: 20%;">
+                                        style="position: relative; display: block; margin-top: 8%;">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"

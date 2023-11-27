@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span class="card-title">
-                                <h3>{{ $order->name }}</h3>
+                                <h3 class="ms-5 mt-2">{{ $order->name }}</h3>
                             </span>
                             <div class="float-right">
                                 <div class="float-right">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body" style="height: 600px; overflow:auto;">
                         <div class="row">
                             <div class="col m-2">
                                 <label for="formGroupExampleInput" class="form-label">Cliente</label>
@@ -38,41 +38,44 @@
                             </div>
                             <div class="col m-2">
                                 <label for="formGroupExampleInput" class="form-label">Destino</label>
-                                <input type="text" class="form-control" value="{{ optional($order->Destination)->name }}" disabled
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col m-2">
-                                <label for="formGroupExampleInput" class="form-label">Tipo</label>
-                                <input type="text" class="form-control" value="  {{ optional($order->movementDetail)->name  }}"
-                                    disabled readonly>
-                            </div>
-                            <div class="col m-2">
-                                <label for="formGroupExampleInput" class="form-label">Producto Terminado</label>
-                                <input type="text" class="form-control" value="{{ optional($order->FinishedProduct)->name  }}" disabled
-                                    readonly>
-                            </div>
-                            <div class="col m-2">
-                                <label for="formGroupExampleInput" class="form-label">Producto Ensamblado</label>
-                                <input type="text" class="form-control" value="  {{ optional($order->AssembledProduct)->name  }}"
+                                <input type="text" class="form-control" value="{{ optional($order->Destination)->name }}"
                                     disabled readonly>
                             </div>
                         </div>
                         <div class="row">
 
-                            <div class="col m-2 m-2">
-                                <label for="formGroupExampleInput" class="form-label">Cantidad</label>
-                                <input type="text" class="form-control" value="{{ $order->amount }}" disabled readonly>
+                            <div class="col m-2">
+                                <label for="formGroupExampleInput" class="form-label">Tipo</label>
+                                <input type="text" class="form-control"
+                                    value="{{ optional($order->movementDetail)->name }}" disabled readonly>
                             </div>
                             <div class="col m-2">
                                 <label for="formGroupExampleInput" class="form-label">Status</label>
                                 <input type="text" class="form-control" value=" {{ $order->status }}" disabled readonly>
                             </div>
-                            <div class="col m-2">
-
-                            </div>
                         </div>
+
+
+                        @foreach ($order->finishedProducts as $finishedProduct)
+                            <div class="row">
+                                <div class="col m-2">
+                                    <label for="formGroupExampleInput" class="form-label">Producto Terminado</label>
+                                    <input type="text" class="form-control" value="{{ $finishedProduct->name }}" disabled
+                                        readonly>
+                                </div>
+                                <div class="col m-2">
+                                    <label for="formGroupExampleInput" class="form-label">Color</label>
+                                    <input type="text" class="form-control" value="{{ $finishedProduct->color->name }}" disabled
+                                        readonly>
+                                </div>
+                                <div class="col m-2 m-2">
+                                    <label for="formGroupExampleInput" class="form-label">Cantidad</label>
+                                    <input type="text" class="form-control" value="{{ $finishedProduct->pivot->amount }}"
+                                        disabled readonly>
+                                </div>
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>

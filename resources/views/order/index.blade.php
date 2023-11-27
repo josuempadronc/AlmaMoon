@@ -58,9 +58,9 @@
                                             <th>Nombre</th>
                                             <th>Rif</th>
                                             <th>Destino</th>
-                                            <th>Tipo</th>
+                                            {{-- <th>Tipo</th> --}}
                                             <th>Producto</th>
-                                            {{-- <th>Producto Ensamblado</th> --}}
+                                            <th>Color</th>
                                             <th>Cantidad</th>
                                             <th>Status</th>
 
@@ -70,15 +70,32 @@
                                     <tbody>
                                         @foreach ($orders as $order)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                {{-- <td>{{ ++$i }}</td> --}}
 
                                                 <td>{{ $order->name }}</td>
                                                 <td>{{ $order->rif }}</td>
                                                 <td>{{ optional($order->Destination)->name }}</td>
                                                 <td>{{ optional($order->movementDetail)->name }}</td>
-                                                <td>{{ optional($order->FinishedProduct)->name }}</td>
-                                                {{-- <td>{{ optional($order->AssembledProduct)->name }}</td> --}}
-                                                <td>{{ $order->amount }}</td>
+                                                <td>
+                                                    @foreach ($order->finishedProducts as $finishedProduct)
+                                                        <ul style="position: relative;
+                                                        right: 18%;">{{ $finishedProduct->name }}</ul>
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach ($order->finishedProducts as $finishedProduct)
+                                                        <ul style="position: relative;
+                                                        right: 18%;">{{ $finishedProduct->color->name }}</ul>
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach ($order->finishedProducts as $finishedProduct)
+                                                        <ul style="position: relative;
+                                                        right: 18%;">{{ $finishedProduct->pivot->amount }}</ul>
+                                                    @endforeach
+                                                </td>
+
+                                                {{-- <td>{{ $order->amount }}</td> --}}
                                                 <td>{{ $order->status }}</td>
 
                                                 <td>
@@ -86,19 +103,27 @@
                                                         @if (auth()->user()->role === '1')
                                                             <form action="{{ route('orders.destroy', $order->id) }}"
                                                                 method="POST">
-                                                                <a class="btn btn-sm btn-primary "
-                                                                    href="{{ route('orders.show', $order->id) }}">
-                                                                    <i class="bi bi-eye-fill"></i>
-                                                                </a>
-                                                                <a class="btn btn-sm btn-success"
-                                                                    href="{{ route('orders.edit', $order->id) }}">
-                                                                    <i class="bi bi-pencil-fill"></i>
-                                                                </a>
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                                    <i class="bi bi-trash-fill"></i>
-                                                                </button>
+                                                                <div>
+                                                                    <a class="btn btn-sm btn-primary m-2"
+                                                                        href="{{ route('orders.show', $order->id) }}">
+                                                                        <i class="bi bi-eye-fill"></i>
+                                                                    </a>
+                                                                    <a class="btn btn-sm btn-success m-2"
+                                                                        href="{{ route('orders.edit', $order->id) }}">
+                                                                        <i class="bi bi-pencil-fill"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div>
+                                                                    <a class="btn btn-sm btn-secondary m-2"
+                                                                        href="{{ route('orders.pdf', $order->id) }}">
+                                                                        <i class="bi bi-file-pdf-fill"></i>
+                                                                    </a>
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger btn-sm m-2">
+                                                                        <i class="bi bi-trash-fill"></i>
+                                                                    </button>
+                                                                </div>
                                                             </form>
                                                         @endif
                                                         @if (auth()->user()->role === '2')
@@ -144,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $orders->links() !!}
+                {{-- {!! $orders->links() !!} --}}
             </div>
         </div>
     </div>

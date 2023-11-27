@@ -47,7 +47,7 @@ class MovementController extends Controller
         $origin = Origin::pluck('name','id');
         $FinishedProduct = FinishedProduct::pluck('name','id');
         $AssembledProduct = AssembledProduct::pluck('name','id');
-        $distination = Destination::pluck('name','id');
+        $Destination = Destination::pluck('name','id');
 
         // $SaveStock =
 
@@ -60,7 +60,7 @@ class MovementController extends Controller
             'origin',
             'FinishedProduct',
             'AssembledProduct',
-            'distination'
+            'Destination'
         ));
 
 

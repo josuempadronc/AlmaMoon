@@ -63,4 +63,13 @@ class FinishedProduct extends Model
     {
         return $this->hasOne('App\Models\Paw', 'id', 'paw_id');
     }
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order', 'order_finished_product', 'finished_product_id', 'order_id');
+    }
+    public function colors()
+{
+    return $this->belongsToMany('App\Models\Color', 'order_finished_product', 'finished_product_id', 'order_id')
+        ->withPivot('amount', 'color');
+}
 }

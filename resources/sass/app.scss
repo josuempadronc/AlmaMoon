@@ -41,6 +41,14 @@ button.accordion-button {
     border-top: 0;
     border-bottom: 0;
 }
+div#flush-collapseTwo {
+    height: 100px;
+    width: 198px;
+    overflow: auto;
+}
+div#flush-collapseTwo::-webkit-scrollbar {
+    display: none;  /* Ocultar scroll */
+}
 // End Acoordeon
 // Link Menu
 a.nav-link.p-2.mb-2 {
@@ -68,5 +76,4 @@ a.nav-link.p-2.mb-2 {
 .despacho::-webkit-scrollbar {
     display: none;  /* Ocultar scroll */
 }
-
 

@@ -25,14 +25,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function () {
 
-
-
-        Route::get('admin/almacen', function () {
+        Route::get('almacen', function () {
             return view('./Dashboard/almacen');
         });
-        Route::get('admin/estadistica', function () {
+        Route::get('estadistica', function () {
             return view('./statistics/statistics');
         });
+        Route::get('orders/{id}/pdf', [App\Http\Controllers\OrderController::class, 'pdf'])->name('orders.pdf');
+
         Route::resource('color', App\Http\Controllers\ColorController::class);
         Route::resource('destinations', App\Http\Controllers\DestinationController::class)->middleware('auth');
         Route::resource('finished-products', App\Http\Controllers\FinishedProductController::class)->middleware('auth');
@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('raw-material-movements', App\Http\Controllers\RawMaterialMovementController::class)->middleware('auth');
         Route::resource('assembled-products', App\Http\Controllers\AssembledProductController::class)->middleware('auth');
         Route::resource('orders', App\Http\Controllers\OrderController::class)->middleware('auth');
+
         // End Almacen
 
 });
