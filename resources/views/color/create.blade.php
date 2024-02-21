@@ -20,7 +20,7 @@
                                     <div class="float-right">
                                         @auth
                                             @if (auth()->user()->role === '1')
-                                            <a class="btn btn-primary" href="{{ route('admin/color.index') }}">
+                                            <a class="btn btn-primary" href="{{ route('color.index') }}">
                                                 <i class="bi bi-backspace"></i>
                                             </a>
                                             @endif
@@ -30,7 +30,7 @@
                                             </a>
                                             @endif
                                             @if (auth()->user()->role === '7')
-                                            <a class="btn btn-primary" href="{{ route('ventas/color.index') }}">
+                                            <a class="btn btn-primary" href="{{ route('color.index') }}">
                                                 <i class="bi bi-backspace"></i>
                                             </a>
                                             @endif

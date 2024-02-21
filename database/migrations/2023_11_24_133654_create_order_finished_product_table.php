@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('finished_product_id');
-            $table->string('color');
+            $table->unsignedBigInteger('color_id');
             $table->string('amount');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('finished_product_id')->references('id')->on('finished_products')->onDelete('cascade');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@
 </head>
 @php
     $dashboardAlamacen = auth::user();
-    // dd($dashboardAlamacen);
+
 @endphp
 
 <body>
@@ -52,9 +52,8 @@
                                         href="{{ URL::to('semi-finished-products') }}">{{ __('Productos SemiTerminados') }}</a>
                                     <a class="nav-link p-2 mb-2"
                                         href="{{ URL::to('raw-materials') }}">{{ __('Materia Prima') }}</a>
-                                    <a class="nav-link p-2 mb-2" href="{{ URL::to('orders') }}">{{ __('Pedidos') }}</a>
                                     <a class="nav-link p-2 mb-2"
-                                        href="{{ URL::to('estadistica') }}">{{ __('Estadistica') }}</a>
+                                        href="{{ URL::to('orders') }}">{{ __('Pedidos') }}</a>
                                 </div>
                                 {{-- END LINK MENU --}}
                                 {{-- ACORDEON --}}
@@ -105,13 +104,14 @@
                                                 href="{{ URL::to('suppliers') }}">{{ __('Proveedores') }}</a>
                                             <a class="nav-link p-2 mb-2"
                                                 href="{{ URL::to('type-movements') }}">{{ __('Tipos de Movimientos') }}</a>
+                                            <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('customers') }}">{{ __('Clientes') }}</a>
                                         </div>
                                     </div>
                                     <div style="">
 
                                     </div>
-                                    <div class="accordion-item"
-                                        style="position: relative; display: block; margin-top: 8%;">
+                                    <div class="accordion-item" style="position: relative; display: block; margin-top: 8%;">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
@@ -167,8 +167,6 @@
                                     <a class="nav-link p-2 mb-2"
                                         href="{{ URL::to('raw-materials') }}">{{ __('Materia Prima') }}</a>
                                     <a class="nav-link p-2 mb-2" href="{{ URL::to('orders') }}">{{ __('Pedidos') }}</a>
-                                    {{-- <a class="nav-link p-2 mb-2"
-                                        href="{{ URL::to('estadistica') }}">{{ __('Estadistica') }}</a> --}}
                                 </div>
                                 {{-- END LINK MENU --}}
                                 {{-- ACORDEON --}}
@@ -281,60 +279,13 @@
                                     <a class="nav-link p-2 mb-2"
                                         href="{{ URL::to('raw-materials') }}">{{ __('Materia Prima') }}</a>
                                     <a class="nav-link p-2 mb-2" href="{{ URL::to('orders') }}">{{ __('Pedidos') }}</a>
-                                    {{-- <a class="nav-link p-2 mb-2"
-                                    href="{{ URL::to('estadistica') }}">{{ __('Estadistica') }}</a> --}}
+
                                 </div>
                                 {{-- END LINK MENU --}}
                                 {{-- ACORDEON --}}
                                 <div class="accordion accordion-flush bg-p" id="accordionFlushExample">
-                                    {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                            aria-expanded="false" aria-controls="flush-collapseOne">
-                                            Moviminetos
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionFlushExample">
-                                        <a class="nav-link p-2 mb-2 mt-2"
-                                            href="{{ URL::to('semi-finished-movements') }}">{{ __('Productos SemiTerminados') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('movements') }}">{{ __('Productos Terminados') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('raw-material-movements') }}">{{ __('Materia Prima') }}</a>
-                                    </div>
-                                </div> --}}
-                                    {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
-                                            aria-expanded="false" aria-controls="flush-collapseTwo">
-                                            Configuracion
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionFlushExample">
-                                        <a class="nav-link p-2 mb-2 mt-2"
-                                            href="{{ URL::to('ventas/color') }}">{{ __('Colores') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('ventas/destinations') }}">{{ __('Destinos') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('ventas/locations') }}">{{ __('Ubicaciones') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('ventas/measures') }}">{{ __('Unidades de Medidas') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('ventas/movement-details') }}">{{ __('Detalles de Movimientos') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('ventas/origins') }}">{{ __('Origen') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('ventas/paws') }}">{{ __('Patas') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('ventas/suppliers') }}">{{ __('Proveedores') }}</a>
-                                        <a class="nav-link p-2 mb-2"
-                                            href="{{ URL::to('ventas/type-movements') }}">{{ __('Tipos de Movimientos') }}</a>
-                                    </div>
-                                </div> --}}
+
+                                </div>
                                     <div style="">
 
                                     </div>
@@ -396,8 +347,6 @@
                                         href="{{ URL::to('raw-materials') }}">{{ __('Materia Prima') }}</a>
                                     <a class="nav-link p-2 mb-2"
                                         href="{{ URL::to('orders') }}">{{ __('Pedidos') }}</a>
-                                    <a class="nav-link p-2 mb-2"
-                                        href="{{ URL::to('estadistica') }}">{{ __('Estadistica') }}</a>
                                 </div>
                                 {{-- END LINK MENU --}}
                                 {{-- ACORDEON --}}
@@ -438,7 +387,7 @@
         @else
             <p>No has iniciado sesión.</p>
         @endauth
-         {{-- END SIDEBAR --}}
+        {{-- END SIDEBAR --}}
 
         {{-- CONTENT --}}
         <main class="col ps-md-2 pt-2">

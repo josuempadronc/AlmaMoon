@@ -4,15 +4,15 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Nombre') }}
-                    {{ Form::text('name', $order->name, ['class' => 'form-control' . ($errors->has('Nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
-                    {!! $errors->first('Nombre', '<div class="invalid-feedback">:message</div>') !!}
+                    {{ Form::text('name', $order->name ?? '', ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
+                    {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Rif') }}
-                    {{ Form::text('rif', $order->rif, ['class' => 'form-control' . ($errors->has('Rif') ? ' is-invalid' : ''), 'placeholder' => 'Rif']) }}
-                    {!! $errors->first('Rif', '<div class="invalid-feedback">:message</div>') !!}
+                    {{ Form::text('rif', $order->rif ?? '', ['class' => 'form-control' . ($errors->has('rif') ? ' is-invalid' : ''), 'placeholder' => 'Rif']) }}
+                    {!! $errors->first('rif', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
         </div>
@@ -20,15 +20,15 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Destino') }}
-                    {{ Form::select('destination_id', $Destination, $order->destination_id, ['class' => 'form-control' . ($errors->has('Destino') ? ' is-invalid' : ''), 'placeholder' => 'Destino']) }}
-                    {!! $errors->first('Destino', '<div class="invalid-feedback">:message</div>') !!}
+                    {{ Form::select('destination_id', $Destination, $order->destination_id ?? '', ['class' => 'form-control' . ($errors->has('destination_id') ? ' is-invalid' : ''), 'placeholder' => 'Destino']) }}
+                    {!! $errors->first('destination_id', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Tipo') }}
-                    {{ Form::select('movementDeatil_id', $movementDetail, $order->movementDeatil_id, ['class' => 'form-control' . ($errors->has('Tipo') ? ' is-invalid' : ''), 'placeholder' => 'Tipo']) }}
-                    {!! $errors->first('Tipo', '<div class="invalid-feedback">:message</div>') !!}
+                    {{ Form::select('movementDeatil_id', $movementDetail, $order->movementDeatil_id ?? '', ['class' => 'form-control' . ($errors->has('movementDeatil_id') ? ' is-invalid' : ''), 'placeholder' => 'Tipo']) }}
+                    {!! $errors->first('movementDeatil_id', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
         </div>
@@ -37,23 +37,25 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Producto') }}
-                    {{ Form::select('finishedProduct_id[]', $FinishedProduct, $order->finishedProduct_id, ['class' => 'form-control product', 'placeholder' => 'Producto']) }}
-                    {!! $errors->first('Producto', '<div class="invalid-feedback">:message</div>') !!}
+                    {{ Form::select('finishedProduct_id[]', $FinishedProduct, $order->finishedProduct_id ?? '', ['class' => 'form-control product', 'placeholder' => 'Producto']) }}
+                    {!! $errors->first('finishedProduct_id', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Color') }}
-                    {{ Form::select('color[]', $Color, $order->color, ['class' => 'form-control product', 'placeholder' => 'Color']) }}
-                    {!! $errors->first('Color', '<div class="invalid-feedback">:message</div>') !!}
+                    {{ Form::select('color[]', $Color, $order->color ?? '', ['class' => 'form-control product', 'placeholder' => 'Color']) }}
+                    {!! $errors->first('color', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
             <div class="col">
-                {{ Form::label('Cantidad') }}
-                <div class="form-group d-flex">
-                    {{ Form::text('amount[]', $order->amount, ['class' => 'form-control quantity', 'placeholder' => 'Cantidad']) }}
-                    {!! $errors->first('Cantidad', '<div class="invalid-feedback">:message</div>') !!}
-                    <button type="button" id="add-item" class="btn btn-primary ms-3">Agregar</button>
+                <div class="form-group">
+                    {{ Form::label('Cantidad') }}
+                    <div class="form-group d-flex">
+                        {{ Form::text('amount[]', $order->amount ?? '', ['class' => 'form-control quantity', 'placeholder' => 'Cantidad']) }}
+                        {!! $errors->first('amount', '<div class="invalid-feedback">:message</div>') !!}
+                        <button type="button" id="add-item" class="btn btn-primary ms-3">Agregar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,20 +66,19 @@
                         <div class="col">
                             <div class="form-group">
                                 {{ Form::label('Producto') }}
-                                {{ Form::select('finishedProduct_id[]', $FinishedProduct, $orderItem->finishedProduct_id, ['class' => 'form-control product', 'placeholder' => 'Producto']) }}
+                                {{ Form::select('finishedProduct_id['.$index.']', $FinishedProduct, $orderItem->finishedProduct_id ?? '', ['class' => 'form-control product', 'placeholder' => 'Producto']) }}
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 {{ Form::label('Color') }}
-                                {{ Form::select('color[]', $Color, $order->color, ['class' => 'form-control product', 'placeholder' => 'Color']) }}
-                                {!! $errors->first('Color', '<div class="invalid-feedback">:message</div>') !!}
+                                {{ Form::select('color['.$index.']', $Color, $orderItem->color ?? '', ['class' => 'form-control product', 'placeholder' => 'Color']) }}
+                                {!! $errors->first('color', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
-                        </div>
                         <div class="col">
                             <div class="form-group">
                                 {{ Form::label('Cantidad') }}
-                                {{ Form::text('amount[]', $orderItem->amount, ['class' => 'form-control quantity', 'placeholder' => 'Cantidad']) }}
+                                {{ Form::text('amount['.$index.']', $orderItem->amount, ['class' => 'form-control quantity', 'placeholder' => 'Cantidad']) }}
                             </div>
                         </div>
                         <div class="col">

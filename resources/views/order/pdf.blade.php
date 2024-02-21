@@ -44,14 +44,14 @@
 
                     <div class="card-body">
                         <table class="table" style="border-collapse: collapse; border: 1px solid black;">
-                             <tr>
-                                    <th style="border: 1px solid;">Nro</th>
-                                    <th  style="border: 1px solid;">
+                             <tr style="height: 20px;">
+                                    <th style="border: 1px solid; height: 20px;">Nro</th>
+                                    <th  style="border: 1px solid; height: 20px;">
                                         {{ $order->id }}
                                     </th>
-                                    <th  style="border: 1px solid;">Fecha</th>
-                                    <th  colspan="4" style="border: 1px solid; width: 100px;">
-                                        {{$date}}
+                                    <th  style="border: 1px solid; height: 20px;">Fecha</th>
+                                    <th  colspan="4" style="border: 1px solid; height: 20px; width: 100px;">
+                                        {{$dateFormat}}
                                     </th>
                                 </tr>
                             <thead>
@@ -71,21 +71,24 @@
                                     <td  style="border: 1px solid;  text-align: center;">{{ $order->rif }}</td>
                                     <td  style="border: 1px solid;  text-align: center;">{{ optional($order->Destination)->name }}</td>
                                     <td  style="border: 1px solid;  text-align: center;">{{ optional($order->movementDetail)->name }}</td>
+                                    @if ($orderFinishedProducts)
                                     <td  style="border: 1px solid;">
-                                        @foreach ($order->finishedProducts as $finishedProduct)
-                                            <ul>{{ $finishedProduct->name }}</ul>
+                                        @foreach ($orderFinishedProducts as $orderFinishedProduct)
+                                            <ul>{{ $orderFinishedProduct->name }}</ul>
                                         @endforeach
                                     </td>
                                      <td  style="border: 1px solid;">
-                                        @foreach ($order->finishedProducts as $finishedProduct)
-                                            <ul>{{ $finishedProduct->color->name }}</ul>
+                                        @foreach ($orderFinishedProducts as $orderFinishedProduct)
+                                            <ul>{{ $orderFinishedProduct->color->name }}</ul>
                                         @endforeach
                                     </td>
                                     <td  style="border: 1px solid;">
-                                        @foreach ($order->finishedProducts as $finishedProduct)
-                                           <ul> {{ $finishedProduct->pivot->amount }}</ul>
+                                        @foreach ($orderFinishedProducts as $orderFinishedProduct)
+                                           <ul> {{ $orderFinishedProduct->pivot->amount }}</ul>
                                         @endforeach
                                     </td>
+
+                                    @endif
                                 </tr>
                             </tbody>
                         </table>

@@ -7,7 +7,6 @@ use Illuminate\Support\Carbon;
 
 function Dashboard()
 {
-
     // Productos
     $FinishedProduct = FinishedProduct::get();
     $groupProduct = $FinishedProduct->groupBy('name');
@@ -26,25 +25,6 @@ function Dashboard()
             'groupProduct',
             'totalCount',
             'orders',
-        )
-    );
-}
-
-function Statistic()
-{
-
-    $fechaInicio = Carbon::parse('2023-01-31');
-    $fechaFin = Carbon::parse('2023-01-31');
-
-
-    $registros = Movement::join('finished_products', 'movements.finishedProduct_id', '=', 'finished_products.id')
-        ->select('movements.date', 'movements.amount', 'finished_products.name', 'finished_products.color_id', 'finished_products.paw_id')
-        ->whereBetween('movements.date', [$fechaInicio, $fechaFin])
-        ->where('typeMovement_id', '1')
-        ->get();
-    return (
-        compact(
-            'registros',
         )
     );
 }

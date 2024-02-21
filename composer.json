@@ -28,7 +28,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "App\\Helpers\\": "app/Helpers/"
         }
     },
     "autoload-dev": {
@@ -36,7 +37,8 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "app/Helpers/CustomHelper.php"
+            "app/Helpers/CustomHelper.php",
+            "app/Helpers/StatisticHelper.php"
         ]
     },
     "scripts": {

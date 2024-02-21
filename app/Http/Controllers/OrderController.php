@@ -27,7 +27,13 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('finishedProducts')->get();
-        return view('order.index', ['orders' => $orders]);
+        // $orderFinishedProducts = $orders;
+
+        // dd($orders);
+        return view('order.index', [
+            'orders' => $orders,
+            // 'orderFinishedProducts' => $orderFinishedProducts
+        ]);
     }
 
 
@@ -35,12 +41,15 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         $date = Carbon::today();
+        $dateFormat = $date->format('d - M - Y');
+        $orderFinishedProducts = $order->finishedProducts;
 
         $pdf = Pdf::loadView(
             'order.pdf',
             compact(
                 'order',
-                'date',
+                'dateFormat',
+                'orderFinishedProducts',
             )
         );
         return $pdf->stream();
@@ -111,15 +120,11 @@ class OrderController extends Controller
         $colors = $validatedData['color'];
         $amounts = $validatedData['amount'];
 
-        // dd($finishedProductIds);
-        // dd($colors);
-        // dd($amounts);
-
         // Asocia los productos finales al pedido con sus respectivas cantidades
         foreach ($finishedProductIds as $index => $finishedProductId) {
-            $order->finishedProducts()->sync([$finishedProductId => [
+            $order->finishedProducts()->attach([$finishedProductId => [
                 'amount' => $amounts[$index],
-                'color' => $colors[$index]
+                'color_id' => $colors[$index]
             ]]);
         }
 
@@ -136,35 +141,16 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::find($id);
+        $Color = Color::pluck('name', 'id');
+        $orderFinishedProducts = $order->finishedProducts;
 
+        // dd($orderFinishedProducts, $order);
         return view('order.show', compact(
             'order',
+            'orderFinishedProducts',
+            'Color'
         ));
     }
-
-    // public function show($id)
-    // {
-    //     $order = Order::find($id);
-
-    //     // // Recuperar los datos de la orden como cadena de texto
-    //     // $dataAsString = $order->data;
-
-    //     // // Convertir la cadena de texto de vuelta a un arreglo
-    //     // $dataArray = json_decode($dataAsString, true);
-
-    //     // // Verificar si el arreglo no es nulo y tiene al menos un elemento
-    //     // if (!empty($dataArray) && is_array($dataArray)) {
-    //     //     $firstKey = array_key_first($dataArray);
-    //     //     $firstValue = $dataArray[$firstKey];
-    //     // } else {
-    //     //     // Manejar el caso cuando el arreglo está vacío o es nulo
-    //     //     $firstKey = null;
-    //     //     $firstValue = null;
-    //     // }
-
-    //     // Pasar los valores a la vista
-    //     return view('orders.show', compact('order'));
-    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -179,13 +165,18 @@ class OrderController extends Controller
         $FinishedProduct = FinishedProduct::pluck('name', 'id');
         $AssembledProduct = AssembledProduct::pluck('name', 'id');
         $Destination = Destination::pluck('name', 'id');
+        $Color = Color::pluck('name', 'id');
+        $order = Order::with('finishedProducts')->find($id);
+        $orderFinishedProducts = $order->finishedProducts;
 
         return view('order.edit', compact(
             'order',
             'movementDetail',
             'FinishedProduct',
             'AssembledProduct',
-            'Destination'
+            'Destination',
+            'Color',
+            'orderFinishedProducts'
         ));
     }
 
@@ -196,14 +187,53 @@ class OrderController extends Controller
      * @param  Order $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        request()->validate(Order::$rules);
+        // Define las reglas de validación
+        $rules = [
+            'name' => 'required',
+            'rif' => 'required',
+            'destination_id' => 'required',
+            'movementDeatil_id' => 'required',
+            'finishedProduct_id' => 'required|array',
+            'finishedProduct_id.*' => 'exists:finished_products,id',
+            'color_id' => 'required|array|min:1',
+            'color_id.*' => 'required',
+            'amount' => 'required|array',
+            'amount.*' => 'numeric',
+            'status' => 'required',
+        ];
 
-        $order->update($request->all());
+        // Valida los datos del formulario
+        $validatedData = $request->validate($rules);
+
+        // Encuentra el pedido a editar
+        $order = Order::find($id);
+        $order->name = $validatedData['name'];
+        $order->rif = $validatedData['rif'];
+        $order->destination_id = $validatedData['destination_id'];
+        $order->movementDeatil_id = $validatedData['movementDeatil_id'];
+        $order->status = $validatedData['status'];
+        $order->save();
+
+        // Elimina los productos finales asociados al pedido
+        $order->finishedProducts()->detach();
+
+        // Obtén los productos finales y las cantidades del formulario
+        $finishedProductIds = $validatedData['finishedProduct_id'];
+        $colors = $validatedData['color_id'];
+        $amounts = $validatedData['amount'];
+
+        // Asocia los nuevos productos finales al pedido con sus respectivas cantidades
+        foreach ($finishedProductIds as $index => $finishedProductId) {
+            $order->finishedProducts()->attach($finishedProductId, [
+                'amount' => $amounts[$index],
+                'color_id' => $colors[$index]
+            ]);
+        }
 
         return redirect()->route('orders.index')
-            ->with('success', 'Informacion Actualizada con Exito');
+            ->with('success', 'Información actualizada con éxito');
     }
 
     /**
@@ -213,7 +243,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $order = Order::find($id)->delete();
+        $order = Order::find($id);
+        $order->finishedProducts()->detach();
+        $order->delete();
 
         return redirect()->route('orders.index')
             ->with('success', 'Informacion Eliminada con Exito');

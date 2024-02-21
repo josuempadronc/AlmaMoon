@@ -79,13 +79,17 @@ class Order extends Model
         return $this->hasOne('App\Models\MovementDetail', 'id', 'movementDeatil_id');
     }
 
+    //     public function finishedProducts()
+    //     {
+    //         return $this->belongsToMany(
+    //             'App\Models\FinishedProduct',
+    //             'order_finished_product',
+    //             'order_id',
+    //             'finished_product_id'
+    //         )->withPivot('amount', 'color_id');
+    //     }
     public function finishedProducts()
     {
-        return $this->belongsToMany(
-            'App\Models\FinishedProduct',
-            'order_finished_product',
-            'order_id',
-            'finished_product_id'
-        )->withPivot('amount', 'color');
+        return $this->belongsToMany(FinishedProduct::class, 'order_finished_product', 'order_id', 'finished_product_id')->withPivot('amount', 'color_id');
     }
 }

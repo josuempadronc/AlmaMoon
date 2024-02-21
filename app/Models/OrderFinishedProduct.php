@@ -22,9 +22,9 @@ class OrderFinishedProduct extends Model
 {
 
     static $rules = [
-		'order_id' => 'required',
-		'finished_product_id' => 'required',
-        'color' => 'required'
+        'order_id' => 'required',
+        'finished_product_id' => 'required',
+        'color_id' => 'required'
     ];
 
     protected $perPage = 20;
@@ -34,7 +34,7 @@ class OrderFinishedProduct extends Model
      *
      * @var array
      */
-    protected $fillable = ['order_id','finished_product_id', 'color'];
+    protected $fillable = ['order_id', 'finished_product_id', 'color_id'];
 
 
     /**
@@ -53,5 +53,11 @@ class OrderFinishedProduct extends Model
         return $this->hasOne('App\Models\Order', 'id', 'order_id');
     }
 
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function color()
+    {
+        return $this->hasOne('App\Models\Color', 'id', 'color_id');
+    }
 }

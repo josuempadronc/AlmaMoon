@@ -45,7 +45,7 @@ class FinishedProduct extends Model
      */
     public function color()
     {
-        return $this->hasOne('App\Models\Color', 'id', 'color_id');
+        return $this->belongsTo('App\Models\Color', 'color_id');
     }
 
     /**

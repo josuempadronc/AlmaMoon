@@ -54,28 +54,32 @@
                                 <input type="text" class="form-control" value=" {{ $order->status }}" disabled readonly>
                             </div>
                         </div>
-
-
-                        @foreach ($order->finishedProducts as $finishedProduct)
-                            <div class="row">
-                                <div class="col m-2">
-                                    <label for="formGroupExampleInput" class="form-label">Producto Terminado</label>
-                                    <input type="text" class="form-control" value="{{ $finishedProduct->name }}" disabled
-                                        readonly>
-                                </div>
-                                <div class="col m-2">
-                                    <label for="formGroupExampleInput" class="form-label">Color</label>
-                                    <input type="text" class="form-control" value="{{ $finishedProduct->color->name }}" disabled
-                                        readonly>
-                                </div>
-                                <div class="col m-2 m-2">
-                                    <label for="formGroupExampleInput" class="form-label">Cantidad</label>
-                                    <input type="text" class="form-control" value="{{ $finishedProduct->pivot->amount }}"
-                                        disabled readonly>
-                                </div>
-                            </div>
-                        @endforeach
-
+                        <div class="row">
+                            @if ($orderFinishedProducts)
+                                @foreach ($orderFinishedProducts as $index => $orderFinishedProduct)
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="producto">Producto</label>
+                                                <input type="text" class="form-control" id="producto" value="{{ $orderFinishedProduct->name }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="color">Color</label>
+                                                <input type="text" class="form-control" id="color" value="{{ $orderFinishedProduct->color->name }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="cantidad">Cantidad</label>
+                                                <input type="text" class="form-control" id="cantidad" value="{{ $orderFinishedProduct->pivot->amount }}" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
