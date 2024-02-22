@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\FinishedProduct;
+use App\Models\SemiFinishedProduct;
 use App\Models\Order;
 use App\Models\Movement;
 use Illuminate\Support\Carbon;
@@ -14,8 +15,17 @@ function Dashboard()
         ->selectRaw(FinishedProduct::raw('SUM(stock) as total'))->get();
     // End Productos
 
+    // Producto Semiterminado
+
+    $FinishedProductSemi = SemiFinishedProduct::get();
+    $groupProductSemi = $FinishedProductSemi->groupBy('name');
+    $totalCountPs = SemiFinishedProduct::groupBy('name')
+        ->selectRaw(SemiFinishedProduct::raw('SUM(stock) as total'))->get();
+
+    // End Producto Semiterminado
+
     // Pedidos
-    $orders = Order::get();
+    $orders = Order::where('status','Pendiente')->get();
 
      // End Pedidos
 
@@ -25,6 +35,7 @@ function Dashboard()
             'groupProduct',
             'totalCount',
             'orders',
+            'groupProductSemi',
         )
     );
 }
