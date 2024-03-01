@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Color;
 use App\Models\AssembledProduct;
+use App\Models\Customer;
 use App\Models\Destination;
 use App\Models\FinishedProduct;
 use App\Models\MovementDetail;
@@ -27,15 +28,14 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('finishedProducts')->get();
-        // $orderFinishedProducts = $orders;
+        // $customers = Customer::all();
 
         // dd($orders);
         return view('order.index', [
             'orders' => $orders,
-            // 'orderFinishedProducts' => $orderFinishedProducts
+            // 'customers' => $customers,
         ]);
     }
-
 
     public function pdf($id)
     {
@@ -55,6 +55,29 @@ class OrderController extends Controller
         return $pdf->stream();
     }
 
+    public function actualizar($id)
+    {
+        // Validar los datos del formulario si es necesario
+
+        $order = Order::find($id);
+
+        if (!$order) {
+            // Manejar el caso si la order no existe
+            return redirect()
+                ->back()
+                ->with('error', 'La orden no existe.');
+        }
+
+        $order->status = 'Despachado';
+        $order->save();
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Estado de la orden actualizado correctamente.'
+            );
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -68,17 +91,18 @@ class OrderController extends Controller
         $Color = Color::pluck('name', 'id');
         $AssembledProduct = AssembledProduct::pluck('name', 'id');
         $Destination = Destination::pluck('name', 'id');
+        $Customer = Customer::pluck('name', 'id');
+
         return view('order.create', compact(
             'order',
             'movementDetail',
             'FinishedProduct',
             'AssembledProduct',
             'Destination',
-            // 'options',
-            'Color'
+            'Color',
+            'Customer',
         ));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -90,9 +114,9 @@ class OrderController extends Controller
     {
         // Define las reglas de validación
         $rules = [
-            'name' => 'required',
+            'name_id' => 'required',
             'rif' => 'required',
-            'destination_id' => 'required',
+            'destination' => 'required',
             'movementDeatil_id' => 'required',
             'finishedProduct_id' => 'required|array',
             'finishedProduct_id.*' => 'exists:finished_products,id',
@@ -108,9 +132,9 @@ class OrderController extends Controller
 
         // Crea un nuevo pedido
         $order = new Order();
-        $order->name = $validatedData['name'];
+        $order->name_id = $validatedData['name_id'];
         $order->rif = $validatedData['rif'];
-        $order->destination_id = $validatedData['destination_id'];
+        $order->destination = $validatedData['destination'];
         $order->movementDeatil_id = $validatedData['movementDeatil_id'];
         $order->status = $validatedData['status'];
         $order->save();
@@ -167,6 +191,7 @@ class OrderController extends Controller
         $Destination = Destination::pluck('name', 'id');
         $Color = Color::pluck('name', 'id');
         $order = Order::with('finishedProducts')->find($id);
+        $Customer = Customer::pluck('name', 'id');
         $orderFinishedProducts = $order->finishedProducts;
 
         return view('order.edit', compact(
@@ -176,7 +201,8 @@ class OrderController extends Controller
             'AssembledProduct',
             'Destination',
             'Color',
-            'orderFinishedProducts'
+            'orderFinishedProducts',
+            'Customer'
         ));
     }
 
@@ -191,9 +217,9 @@ class OrderController extends Controller
     {
         // Define las reglas de validación
         $rules = [
-            'name' => 'required',
+            'name_id' => 'required',
             'rif' => 'required',
-            'destination_id' => 'required',
+            'destination' => 'required',
             'movementDeatil_id' => 'required',
             'finishedProduct_id' => 'required|array',
             'finishedProduct_id.*' => 'exists:finished_products,id',
@@ -209,9 +235,9 @@ class OrderController extends Controller
 
         // Encuentra el pedido a editar
         $order = Order::find($id);
-        $order->name = $validatedData['name'];
+        $order->name_id = $validatedData['name_id'];
         $order->rif = $validatedData['rif'];
-        $order->destination_id = $validatedData['destination_id'];
+        $order->destination = $validatedData['destination'];
         $order->movementDeatil_id = $validatedData['movementDeatil_id'];
         $order->status = $validatedData['status'];
         $order->save();

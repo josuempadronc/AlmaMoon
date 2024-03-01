@@ -14,14 +14,11 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('Ci');
+            $table->string('ci');
+            $table->string('location');
             $table->timestamps();
         });
 
-        Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->foreign('customer_id')->references('id')->on('customers');
-        });
     }
 
     /**
@@ -29,11 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign(['customer_id']);
-            $table->dropColumn('customer_id');
-        });
-
         Schema::dropIfExists('customers');
     }
 };

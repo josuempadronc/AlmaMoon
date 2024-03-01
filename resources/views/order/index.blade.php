@@ -56,9 +56,9 @@
                                             <th>No</th>
 
                                             <th>Nombre</th>
-                                            <th>Rif</th>
+                                            <th>Ci/Rif</th>
                                             <th>Destino</th>
-                                            {{-- <th>Tipo</th> --}}
+                                            <th>Tipo</th>
                                             <th>Producto</th>
                                             <th>Color</th>
                                             <th>Cantidad</th>
@@ -70,11 +70,10 @@
                                     <tbody>
                                         @foreach ($orders as $order)
                                             <tr>
-                                                {{-- <td>{{ ++$i }}</td> --}}
-
-                                                <td>{{ $order->name }}</td>
+                                                <td class="text-center">{{ $order->id }}</td>
+                                                <td>{{ optional($order->Customer)->name }}</td>
                                                 <td>{{ $order->rif }}</td>
-                                                <td>{{ optional($order->Destination)->name }}</td>
+                                                <td>{{ $order->destination }}</td>
                                                 <td>{{ optional($order->movementDetail)->name }}</td>
                                                 <td>
                                                     @foreach ($order->finishedProducts as $finishedProduct)
@@ -94,10 +93,7 @@
                                                         right: 18%;">{{ $finishedProduct->pivot->amount }}</ul>
                                                     @endforeach
                                                 </td>
-
-                                                {{-- <td>{{ $order->amount }}</td> --}}
                                                 <td>{{ $order->status }}</td>
-
                                                 <td>
                                                     @auth
                                                         @if (auth()->user()->role === '1')

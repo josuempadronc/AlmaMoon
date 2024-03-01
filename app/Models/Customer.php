@@ -19,10 +19,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Customer extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
-		'Ci' => 'required',
+		'ci' => 'required',
+        'location' => 'required',
     ];
 
     protected $perPage = 20;
@@ -32,7 +33,7 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','Ci'];
+    protected $fillable = ['name','ci','location'];
 
 
     /**
@@ -41,7 +42,10 @@ class Customer extends Model
     public function orders()
     {
         return $this->hasMany('App\Models\Order', 'customer_id', 'id');
+
     }
-    
+
+
+
 
 }

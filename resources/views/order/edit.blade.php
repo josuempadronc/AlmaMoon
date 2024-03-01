@@ -38,15 +38,15 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 {{ Form::label('Nombre') }}
-                                                {{ Form::text('name', $order->name ?? '', ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
-                                                {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
+                                                {{ Form::select('name_id', $Customer, $order->Customer->name ?? '', ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
+                                                {!! $errors->first('Nombre', '<div class="invalid-feedback">:message</div>') !!}
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                {{ Form::label('Rif') }}
-                                                {{ Form::text('rif', $order->rif ?? '', ['class' => 'form-control' . ($errors->has('rif') ? ' is-invalid' : ''), 'placeholder' => 'Rif']) }}
-                                                {!! $errors->first('rif', '<div class="invalid-feedback">:message</div>') !!}
+                                                {{ Form::label('Ci/Rif') }}
+                                                {{ Form::text('rif', $order->rif ?? '', ['class' => 'form-control' . ($errors->has('rif') ? ' is-invalid' : ''), 'placeholder' => 'Ci/Rif']) }}
+                                                {!! $errors->first('Ci/Rif', '<div class="invalid-feedback">:message</div>') !!}
                                             </div>
                                         </div>
                                     </div>
@@ -54,15 +54,15 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 {{ Form::label('Destino') }}
-                                                {{ Form::select('destination_id', $Destination, $order->destination_id ?? '', ['class' => 'form-control' . ($errors->has('destination_id') ? ' is-invalid' : ''), 'placeholder' => 'Destino']) }}
-                                                {!! $errors->first('destination_id', '<div class="invalid-feedback">:message</div>') !!}
+                                                {{ Form::text('destination', $order->destination ?? '', ['class' => 'form-control' . ($errors->has('Destino') ? ' is-invalid' : ''), 'placeholder' => 'Destino']) }}
+                                                {!! $errors->first('Destino', '<div class="invalid-feedback">:message</div>') !!}
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
                                                 {{ Form::label('Tipo') }}
-                                                {{ Form::select('movementDeatil_id', $movementDetail, $order->movementDeatil_id ?? '', ['class' => 'form-control' . ($errors->has('movementDeatil_id') ? ' is-invalid' : ''), 'placeholder' => 'Tipo']) }}
-                                                {!! $errors->first('movementDeatil_id', '<div class="invalid-feedback">:message</div>') !!}
+                                                {{ Form::select('movementDeatil_id', $movementDetail, $order->movementDeatil_id ?? '', ['class' => 'form-control' . ($errors->has('Tipo') ? ' is-invalid' : ''), 'placeholder' => 'Tipo']) }}
+                                                {!! $errors->first('Tipo', '<div class="invalid-feedback">:message</div>') !!}
                                             </div>
                                         </div>
                                     </div>

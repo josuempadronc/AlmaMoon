@@ -30,10 +30,10 @@ class Order extends Model
 {
 
     static $rules = [
-        'name' => 'required',
-        'rif' => 'required',
-        'destination_id' => 'required',
-        'movementDeatil_id' => 'required',
+        // 'name' => 'required',
+        // 'rif' => 'required',
+        // 'destination_id' => 'required',
+        // 'movementDeatil_id' => 'required',
         'status' => 'required',
     ];
 
@@ -44,7 +44,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'rif', 'destination_id', 'movementDeatil_id', 'finishedProduct_id', 'assembledProduct_id', 'amount', 'status'];
+    protected $fillable = ['name_id', 'rif', 'destination', 'movementDeatil_id', 'finishedProduct_id', 'assembledProduct_id','customer_id', 'amount', 'status'];
 
 
     /**
@@ -55,13 +55,6 @@ class Order extends Model
         return $this->hasOne('App\Models\AssembledProduct', 'id', 'assembledProduct_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function destination()
-    {
-        return $this->hasOne('App\Models\Destination', 'id', 'destination_id');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -74,22 +67,25 @@ class Order extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    public function Customer()
+    {
+        return $this->hasOne('App\Models\Customer', 'id', 'name_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function movementDetail()
     {
         return $this->hasOne('App\Models\MovementDetail', 'id', 'movementDeatil_id');
     }
 
-    //     public function finishedProducts()
-    //     {
-    //         return $this->belongsToMany(
-    //             'App\Models\FinishedProduct',
-    //             'order_finished_product',
-    //             'order_id',
-    //             'finished_product_id'
-    //         )->withPivot('amount', 'color_id');
-    //     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
     public function finishedProducts()
     {
         return $this->belongsToMany(FinishedProduct::class, 'order_finished_product', 'order_id', 'finished_product_id')->withPivot('amount', 'color_id');
     }
+
 }

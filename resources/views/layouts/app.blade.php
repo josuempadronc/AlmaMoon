@@ -105,7 +105,7 @@
                                             <a class="nav-link p-2 mb-2"
                                                 href="{{ URL::to('type-movements') }}">{{ __('Tipos de Movimientos') }}</a>
                                             <a class="nav-link p-2 mb-2"
-                                                href="{{ URL::to('customers') }}">{{ __('Clientes') }}</a>
+                                                href="{{ URL::to('customer') }}">{{ __('Clientes') }}</a>
                                         </div>
                                     </div>
                                     <div style="">

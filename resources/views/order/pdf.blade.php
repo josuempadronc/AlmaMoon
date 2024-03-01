@@ -67,27 +67,26 @@
                             </thead>
                             <tbody>
                                 <tr >
-                                    <td  style="border: 1px solid;  text-align: center;">{{ $order->name }}</td>
+                                    <td  style="border: 1px solid;  text-align: center;">{{optional($order->Customer)->name }}</td>
                                     <td  style="border: 1px solid;  text-align: center;">{{ $order->rif }}</td>
-                                    <td  style="border: 1px solid;  text-align: center;">{{ optional($order->Destination)->name }}</td>
+                                    <td  style="border: 1px solid;  text-align: center;">{{ $order->destination }}</td>
                                     <td  style="border: 1px solid;  text-align: center;">{{ optional($order->movementDetail)->name }}</td>
                                     @if ($orderFinishedProducts)
-                                    <td  style="border: 1px solid;">
-                                        @foreach ($orderFinishedProducts as $orderFinishedProduct)
-                                            <ul>{{ $orderFinishedProduct->name }}</ul>
-                                        @endforeach
-                                    </td>
-                                     <td  style="border: 1px solid;">
-                                        @foreach ($orderFinishedProducts as $orderFinishedProduct)
-                                            <ul>{{ $orderFinishedProduct->color->name }}</ul>
-                                        @endforeach
-                                    </td>
-                                    <td  style="border: 1px solid;">
-                                        @foreach ($orderFinishedProducts as $orderFinishedProduct)
-                                           <ul> {{ $orderFinishedProduct->pivot->amount }}</ul>
-                                        @endforeach
-                                    </td>
-
+                                        <td  style="border: 1px solid;">
+                                            @foreach ($orderFinishedProducts as $orderFinishedProduct)
+                                                <ul>{{ $orderFinishedProduct->name }}</ul>
+                                            @endforeach
+                                        </td>
+                                        <td  style="border: 1px solid;">
+                                            @foreach ($orderFinishedProducts as $orderFinishedProduct)
+                                                <ul>{{ $orderFinishedProduct->color->name }}</ul>
+                                            @endforeach
+                                        </td>
+                                        <td  style="border: 1px solid;">
+                                            @foreach ($orderFinishedProducts as $orderFinishedProduct)
+                                            <ul> {{ $orderFinishedProduct->pivot->amount }}</ul>
+                                            @endforeach
+                                        </td>
                                     @endif
                                 </tr>
                             </tbody>

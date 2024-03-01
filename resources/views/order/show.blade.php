@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span class="card-title">
-                                <h3 class="ms-5 mt-2">{{ $order->name }}</h3>
+                                <h3 class="ms-5 mt-2">{{ optional($order->Customer)->name }}</h3>
                             </span>
                             <div class="float-right">
                                 <div class="float-right">
@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col m-2">
                                 <label for="formGroupExampleInput" class="form-label">Cliente</label>
-                                <input type="text" class="form-control" value=" {{ $order->name }}" disabled readonly>
+                                <input type="text" class="form-control" value=" {{ optional($order->Customer)->name }}" disabled readonly>
                             </div>
                             <div class="col m-2 m-2">
                                 <label for="formGroupExampleInput" class="form-label">Rif / Ci</label>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col m-2">
                                 <label for="formGroupExampleInput" class="form-label">Destino</label>
-                                <input type="text" class="form-control" value="{{ optional($order->Destination)->name }}"
+                                <input type="text" class="form-control" value="{{ $order->destination }}"
                                     disabled readonly>
                             </div>
                         </div>

@@ -95,11 +95,27 @@
                                 <div class="card m-2 shadow mb-3 bg-body-tertiary rounded">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $orders->name }}</h5>
-                                        <p class="card-text">{{ optional($orders->Destination)->name }} </p>
-                                        <p class="card-text">Status: {{ $orders->status }}</p>
-                                        <a class="btn btn-primary" href="{{ route('orders.show', $orders->id) }}">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
+                                        {{-- <p class="card-text">{{ optional($orders->Destination)->name }} </p> --}}
+                                        <p class="card-text"> <strong>Status:</strong> {{ $orders->status }}</p>
+                                        <!-- Formulario para cambiar el estado -->
+                                        <form method="POST" action="{{ route('orders.actualizar', $orders->id) }}">
+                                            @csrf
+                                            @method('PUT')
+
+                                            <div class="form-check d-flex" style="padding: 0; margin-left: -15px;">
+                                                <button type="submit" class="btn">
+                                                    <label class="btn btn-outline-primary" for="btncheck2">Despachado</label>
+                                                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                                                </button>
+                                                <a class="btn btn-primary mt-2" style="height: 36px;" href="{{ route('orders.show', $orders->id) }}">
+                                                    <i class="bi bi-eye-fill"></i>
+                                                </a>
+                                            </div>
+
+
+                                        </form>
+
+
                                     </div>
                                 </div>
                             @endforeach

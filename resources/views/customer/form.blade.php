@@ -10,9 +10,16 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    {{ Form::label('Ci') }}
-                    {{ Form::text('Ci', $customer->Ci, ['class' => 'form-control' . ($errors->has('Ci') ? ' is-invalid' : ''), 'placeholder' => 'Ci']) }}
+                    {{ Form::label('Ci/Rif') }}
+                    {{ Form::text('ci', $customer->ci, ['class' => 'form-control' . ($errors->has('Ci') ? ' is-invalid' : ''), 'placeholder' => 'Ci']) }}
                     {!! $errors->first('Ci', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    {{ Form::label('Direccion') }}
+                    {{ Form::text('location', $customer->location, ['class' => 'form-control' . ($errors->has('location') ? ' is-invalid' : ''), 'placeholder' => 'location']) }}
+                    {!! $errors->first('location', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
         </div>

@@ -29,10 +29,53 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+     public function create()
+     {
+         $customer = new Customer();
+         return view('customer.create', compact('customer'));
+
+     }
+    // public function create(Request $request)
+    // {
+    //     // Validar los datos enviados por el usuario
+    //     $request->validate([
+    //         'name' => 'required',
+    //         'CI/Rif' => 'required',
+    //         'destination_id' => 'required',
+    //     ]);
+
+    //     // Crear un nuevo objeto Customer con los datos proporcionados
+    //     $customer = new Customer();
+    //     $customer->name = $request->input('name');
+    //     $customer->CI = $request->input('CI/Rif');
+    //     $customer->location = $request->input('destination_id');
+
+    //     // Guardar el nuevo cliente en la base de datos
+    //     $customer->save();
+
+    //     // Redirigir al usuario a la página de éxito o mostrar un mensaje de éxito
+    //     return redirect()->route('success')->with('message', 'Cliente creado exitosamente.');
+    //}
+
+    public function getCustomerData(Request $request)
     {
-        $customer = new Customer();
-        return view('customer.create', compact('customer'));
+        $customerId = $request->input('customerId');
+
+        // Obtener los datos del cliente según el ID recibido
+        $customer = Customer::find($customerId);
+
+        // Verificar si se encontró el cliente
+        if ($customer) {
+            $data = [
+                'ci' => $customer->ci,
+                'location' => $customer->location,
+            ];
+            return response()->json($data);
+        }
+
+        // Si no se encontró el cliente, devolver una respuesta de error
+        return response()->json(['error' => 'Cliente no encontrado'], 404);
     }
 
     /**
@@ -47,7 +90,7 @@ class CustomerController extends Controller
 
         $customer = Customer::create($request->all());
 
-        return redirect()->route('customers.index')
+        return redirect()->route('customer.index')
             ->with('success', 'Información guardada con éxito');
     }
 
@@ -90,7 +133,7 @@ class CustomerController extends Controller
 
         $customer->update($request->all());
 
-        return redirect()->route('customers.index')
+        return redirect()->route('customer.index')
             ->with('success', 'Informacion Actualizada con Exito');
     }
 
@@ -103,7 +146,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id)->delete();
 
-        return redirect()->route('customers.index')
+        return redirect()->route('customer.index')
             ->with('success', 'Informacion Eliminada con Exito');
     }
 }

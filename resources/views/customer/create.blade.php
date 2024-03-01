@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('template_title')
-    {{ __('Create') }} Customer
-@endsection
 
 @section('content')
     <section class="content container-fluid">
@@ -18,7 +15,7 @@
                             <div class="float-right">
                                 <div class="float-right">
                                     <div class="float-right">
-                                        <a class="btn btn-primary" href="{{ route('customers.index') }}">
+                                        <a class="btn btn-primary" href="{{ route('customer.index') }}">
                                             <i class="bi bi-backspace"></i>
                                         </a>
                                     </div>
@@ -27,7 +24,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('customers.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('customer.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('customer.form')

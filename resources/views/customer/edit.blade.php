@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('template_title')
-    {{ __('Update') }} Customer
-@endsection
-
 @section('content')
     <section class="content container-fluid">
         <div class="">
@@ -18,7 +14,7 @@
                             <div class="float-right">
                                 <div class="float-right">
                                     <div class="float-right">
-                                        <a class="btn btn-primary" href="{{ route('customers.index') }}">
+                                        <a class="btn btn-primary" href="{{ route('customer.index') }}">
                                             <i class="bi bi-backspace"></i>
                                         </a>
                                     </div>
@@ -27,7 +23,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('customers.update', $customer->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('customer.update', $customer->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
