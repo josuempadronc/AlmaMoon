@@ -72,9 +72,11 @@
                                     style="max-width: 15rem; height: 15rem;">
                                     <div class="card-header">Inyeccion</div>
                                     <div class="card-body">
-                                        <img class="" src="./images/2.png" alt=""
-                                            style="top: -10%;
-                                        position: relative; width: 70% !important;">
+                                        <a href="ensamble">
+                                            <img class="" src="./images/2.png" alt=""
+                                                style="top: -10%;
+                                            position: relative; width: 70% !important;">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="card text-bg-danger mb-3 mx-3 text-center fs-3 rounded-5"

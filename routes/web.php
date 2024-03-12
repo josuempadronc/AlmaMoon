@@ -28,6 +28,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('almacen', function () {
             return view('./Dashboard/almacen');
         });
+        Route::get('ensamble', function () {
+            return view('./Dashboard/ensamble');
+        });
         Route::get('estadistica', function () {
             return view('./statistics/statistics');
         });
@@ -57,6 +60,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('customer', \App\Http\Controllers\CustomerController::class)->middleware('auth');
 
         // End Almacen
+
+        // Ensamble
+        Route::resource('assembly-inputs', App\Http\Controllers\AssemblyInputController::class)->middleware('auth');
+        Route::resource('assembly-structures', App\Http\Controllers\AssemblyStructureController::class)->middleware('auth');
+        Route::resource('assembly-accessories',App\Http\Controllers\AssemblyAccessoryController::class)->middleware('auth');
+        Route::resource('product-type-assemblies', App\http\Controllers\ProductTypeAssemblyController::class)->middleware('auth');
+        Route::resource('product-sheats', App\http\Controllers\ProductSheatController::class)->middleware('auth');
+        Route::resource('assembly-movements', App\http\Controllers\AssemblyMovementController::class)->middleware('auth');
+        Route::resource('assembly-movement-inputs', App\http\Controllers\AssemblyMovementInputController::class)->middleware('auth');
+        // End Ensamble
 
 });
 

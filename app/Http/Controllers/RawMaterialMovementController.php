@@ -49,9 +49,10 @@ class RawMaterialMovementController extends Controller
             'rawMaterialMovement',
             'TypeMovement',
             'rawMaterial',
-            'rawMaterial',
             'destination',
             'location',
+            'supplier',
+            'origin',
         ));
     }
 
@@ -104,9 +105,10 @@ class RawMaterialMovementController extends Controller
             'rawMaterialMovement',
             'TypeMovement',
             'rawMaterial',
-            'rawMaterial',
             'destination',
             'location',
+            'supplier',
+            'origin',
         ));
     }
 

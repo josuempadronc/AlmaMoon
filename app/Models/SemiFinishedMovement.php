@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SemiFinishedMovement extends Model
 {
-    
+
     static $rules = [
 		'date' => 'required',
 		'typeMovement_id' => 'required',
@@ -65,7 +65,7 @@ class SemiFinishedMovement extends Model
     {
         return $this->hasOne('App\Models\Destination', 'id', 'destination_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -73,7 +73,7 @@ class SemiFinishedMovement extends Model
     {
         return $this->hasOne('App\Models\Measure', 'id', 'measures_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -81,7 +81,7 @@ class SemiFinishedMovement extends Model
     {
         return $this->hasOne('App\Models\Origin', 'id', 'origin_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -89,7 +89,7 @@ class SemiFinishedMovement extends Model
     {
         return $this->hasOne('App\Models\SemiFinishedProduct', 'id', 'SemifinishedProduct_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -97,7 +97,7 @@ class SemiFinishedMovement extends Model
     {
         return $this->hasOne('App\Models\Supplier', 'id', 'supplier_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -105,6 +105,6 @@ class SemiFinishedMovement extends Model
     {
         return $this->hasOne('App\Models\TypeMovement', 'id', 'typeMovement_id');
     }
-    
+
 
 }
