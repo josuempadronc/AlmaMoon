@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('template_title')
-    {{ __('Create') }} Product Type Assembly
-@endsection
-
 @section('content')
     <section class="content container-fluid">
         <div class="row">
@@ -13,13 +9,24 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Product Type Assembly</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title"> Nuevo Tipo de Producto</span>
+                            <div class="float-right">
+                                <div class="float-right">
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ route('product-type-assemblies.index') }}">
+                                            <i class="bi bi-backspace"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('product-type-assemblies.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('product-type-assembly.form')
+                            @include('Ensamble/product-type-assembly.form')
 
                         </form>
                     </div>

@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('template_title')
-    {{-- {{ $movement->name }} --}}
-@endsection
 
 @section('content')
     <section class="content container-fluid">

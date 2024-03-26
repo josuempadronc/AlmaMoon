@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AssemblyStructure;
+use App\Models\AssemblyInput;
+use App\Models\AssemblyAccessory;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +34,14 @@ class AssemblyStructureController extends Controller
     public function create()
     {
         $assemblyStructure = new AssemblyStructure();
-        return view('Ensamble/assembly-structure.create', compact('assemblyStructure'));
+        $input = AssemblyInput::pluck('id','name','color_id');
+        $accessory = AssemblyAccessory::pluck('id','name');
+        return view('Ensamble/assembly-structure.create',
+        compact(
+            'assemblyStructure',
+            'input',
+            'accessory',
+        ));
     }
 
     /**

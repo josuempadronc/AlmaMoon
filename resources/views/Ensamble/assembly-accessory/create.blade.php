@@ -12,9 +12,6 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    {{-- <div class="card-header">
-                        <span class="card-title">Nuevo Accesorio</span>
-                    </div> --}}
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span class="card-title"> Nuevo Accesorio</span>

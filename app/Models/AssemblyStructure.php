@@ -51,7 +51,7 @@ class AssemblyStructure extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function assemblyInput()
+    public function assemblyInputColor()
     {
         return $this->hasOne('App\Models\AssemblyInput', 'id', 'color_input');
     }

@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('Color') }}
-            {{ Form::text('color_id', $assemblyAccessory->color_id, ['class' => 'form-control' . ($errors->has('Color') ? ' is-invalid' : ''), 'placeholder' => 'Color']) }}
+            {{ Form::select('color_id', $colors, $assemblyAccessory->color_id, ['class' => 'form-control' . ($errors->has('Color') ? ' is-invalid' : ''), 'placeholder' => 'Color']) }}
             {!! $errors->first('Color', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

@@ -105,11 +105,7 @@
                 </div>
             </div>
             <div class="col">
-                {{-- <div class="form-group">
-                    {{ Form::label('Destino') }}
-                    {{ Form::select('destination_id', $distination, $movement->destination_id, ['class' => 'form-control' . ($errors->has('destination_id') ? ' is-invalid' : ''), 'placeholder' => 'Destino']) }}
-                    {!! $errors->first('destination_id', '<div class="invalid-feedback">:message</div>') !!}
-                </div> --}}
+                
             </div>
         </div>
     </div>

@@ -61,7 +61,7 @@ class FinishedProduct extends Model
      */
     public function paw()
     {
-        return $this->hasOne('App\Models\Paw', 'id', 'paw_id');
+        return $this->belongsTo('App\Models\Paw', 'paw_id');
     }
     public function orders()
     {

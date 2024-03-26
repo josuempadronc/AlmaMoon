@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('template_title')
-    {{ __('Create') }} Product Sheat
-@endsection
-
 @section('content')
     <section class="content container-fluid">
         <div class="row">
@@ -13,13 +9,24 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Product Sheat</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title"> Nueva Ficha</span>
+                            <div class="float-right">
+                                <div class="float-right">
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ route('product-sheats.index') }}">
+                                            <i class="bi bi-backspace"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('product-sheats.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('product-sheat.form')
+                            @include('Ensamble/product-sheat.form')
 
                         </form>
                     </div>

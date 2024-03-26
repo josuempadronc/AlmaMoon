@@ -31,7 +31,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label">Color</label>
-                                <input type="text" class="form-control" value="{{ $assemblyAccessory->color_id }}" disabled readonly>
+                                <input type="text" class="form-control" value="{{ $assemblyAccessory->color->name }}" disabled readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label">Cantidad</label>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AssemblyAccessory;
+use App\Models\Color;
+use function Laravel\Prompts\alert;
 use Illuminate\Http\Request;
 
 /**
@@ -20,8 +22,14 @@ class AssemblyAccessoryController extends Controller
     {
         $assemblyAccessories = AssemblyAccessory::paginate();
 
-        return view('Ensamble/assembly-accessory.index', compact('assemblyAccessories'))
-            ->with('i', (request()->input('page', 1) - 1) * $assemblyAccessories->perPage());
+        return view(
+            'Ensamble/assembly-accessory.index',
+            compact('assemblyAccessories')
+        )
+            ->with('i', (request()
+                ->input('page', 1) - 1) * $assemblyAccessories
+                ->perPage()
+            );
     }
 
     /**
@@ -32,8 +40,54 @@ class AssemblyAccessoryController extends Controller
     public function create()
     {
         $assemblyAccessory = new AssemblyAccessory();
-        return view('Ensamble/assembly-accessory.create', compact('assemblyAccessory'));
+        $colors = Color::pluck('name', 'id');
+        return view(
+            'Ensamble/assembly-accessory.create',
+            compact(
+                'assemblyAccessory',
+                'colors'
+            )
+        );
     }
+
+    /**
+     * Show the form for Importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import(Request $request)
+    {
+
+        $archivo = $request->file('Accesorios');
+        $contenido = file($archivo->getRealPath());
+
+        // Empezamos desde la segunda línea para omitir el encabezado
+        for ($i = 1; $i < count($contenido); $i++) {
+            $linea = trim($contenido[$i]);
+            $campos = explode(',', $linea);
+
+            $AssemblyAccessory = new AssemblyAccessory();
+            $AssemblyAccessory->name = $campos[0];
+
+            // Buscar el modelo Color por nombre
+            $color = Color::where('name', $campos[1])->first();
+            // dd($campos[1]);
+
+            if ($color) {
+                $AssemblyAccessory->color_id = $color->id;
+            } else {
+                alert("El color '$campos[1]' no existe en la base de datos.");
+            }
+            // dd($color);
+
+            $AssemblyAccessory->amount = $campos[2];
+
+            $AssemblyAccessory->save();
+        }
+        return redirect()->route('finished-products.index')
+            ->with('success', 'Se han importado los Accesorios correctamente.');
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,7 +102,7 @@ class AssemblyAccessoryController extends Controller
         $assemblyAccessory = AssemblyAccessory::create($request->all());
 
         return redirect()->route('assembly-accessories.index')
-            ->with('success', 'AssemblyAccessory created successfully.');
+            ->with('success', 'Informacion guardada con exito.');
     }
 
     /**
@@ -61,7 +115,10 @@ class AssemblyAccessoryController extends Controller
     {
         $assemblyAccessory = AssemblyAccessory::find($id);
 
-        return view('Ensamble/assembly-accessory.show', compact('assemblyAccessory'));
+        return view(
+            'Ensamble/assembly-accessory.show',
+            compact('assemblyAccessory')
+        );
     }
 
     /**
@@ -73,8 +130,12 @@ class AssemblyAccessoryController extends Controller
     public function edit($id)
     {
         $assemblyAccessory = AssemblyAccessory::find($id);
+        $colors = Color::pluck('name', 'id');
 
-        return view('Ensamble/assembly-accessory.edit', compact('assemblyAccessory'));
+        return view('Ensamble/assembly-accessory.edit', compact(
+            'assemblyAccessory',
+            'colors'
+        ));
     }
 
     /**
@@ -91,7 +152,7 @@ class AssemblyAccessoryController extends Controller
         $assemblyAccessory->update($request->all());
 
         return redirect()->route('assembly-accessories.index')
-            ->with('success', 'AssemblyAccessory updated successfully');
+            ->with('success', 'Informacion Actualizada con Exito');
     }
 
     /**
@@ -104,6 +165,6 @@ class AssemblyAccessoryController extends Controller
         $assemblyAccessory = AssemblyAccessory::find($id)->delete();
 
         return redirect()->route('assembly-accessories.index')
-            ->with('success', 'AssemblyAccessory deleted successfully');
+            ->with('success', 'Informacion Eliminada con Exito');
     }
 }

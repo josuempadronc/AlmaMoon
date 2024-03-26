@@ -24,6 +24,10 @@
                             <div class="float-right">
                                 @auth
                                     @if (auth()->user()->role === '1')
+                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#ModalImport">
+                                            <i class="bi bi-file-earmark-arrow-up"></i>
+                                        </button>
                                         <a href="{{ route('color.create') }}" class="btn btn-primary btn-sm float-right"
                                             data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
@@ -48,9 +52,9 @@
                                 <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            <th>No</th>
+                                            {{-- <th>No</th> --}}
 
-                                            <th>Nombre</th>
+                                            <th class="ps-5">Nombre</th>
 
                                             <th></th>
                                         </tr>
@@ -59,9 +63,9 @@
 
                                         @foreach ($colors as $color)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                {{-- <td>{{ ++$i }}</td> --}}
 
-                                                <td>{{ $color->name }}</td>
+                                                <td class="ps-5">{{ $color->name }}</td>
 
                                                 <td>
                                                     @auth
@@ -108,6 +112,25 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModalImport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Importar Colores</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('color.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="Colores" accept=".txt">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Subir</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

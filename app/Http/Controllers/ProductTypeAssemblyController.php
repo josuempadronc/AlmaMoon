@@ -20,7 +20,7 @@ class ProductTypeAssemblyController extends Controller
     {
         $productTypeAssemblies = ProductTypeAssembly::paginate();
 
-        return view('Ensamble/product-sheat.index', compact('productTypeAssemblies'))
+        return view('Ensamble/product-type-assembly.index', compact('productTypeAssemblies'))
             ->with('i', (request()->input('page', 1) - 1) * $productTypeAssemblies->perPage());
     }
 
@@ -33,6 +33,30 @@ class ProductTypeAssemblyController extends Controller
     {
         $productTypeAssembly = new ProductTypeAssembly();
         return view('Ensamble/product-type-assembly.create', compact('productTypeAssembly'));
+    }
+
+    /**
+     * Show the form for Importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import(Request $request)
+    {
+        $archivo = $request->file('TipoProductos');
+        $contenido = file($archivo->getRealPath());
+
+        // Empezamos desde la segunda línea para omitir el encabezado
+        for ($i = 1; $i < count($contenido); $i++) {
+            $linea = trim($contenido[$i]);
+            $campos = explode(',', $linea);
+
+            $ProductTypeAssembly = new ProductTypeAssembly();
+            $ProductTypeAssembly->name = $campos[0];
+            $ProductTypeAssembly->save();
+        }
+
+        return redirect()->route('product-type-assemblies.index')
+        ->with('success', 'Se han importado los Tipos de Producto correctamente.');
     }
 
     /**

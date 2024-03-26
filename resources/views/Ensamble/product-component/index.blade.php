@@ -35,9 +35,9 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
+                                        
 										<th>Product Sheat Id</th>
-										<th>Component</th>
+										<th>Input Id</th>
 										<th>Amount</th>
 
                                         <th></th>
@@ -47,9 +47,9 @@
                                     @foreach ($productComponents as $productComponent)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
+                                            
 											<td>{{ $productComponent->product_sheat_id }}</td>
-											<td>{{ $productComponent->component }}</td>
+											<td>{{ $productComponent->input_id }}</td>
 											<td>{{ $productComponent->amount }}</td>
 
                                             <td>

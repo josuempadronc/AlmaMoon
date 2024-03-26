@@ -72,7 +72,7 @@
                                     style="max-width: 15rem; height: 15rem;">
                                     <div class="card-header">Inyeccion</div>
                                     <div class="card-body">
-                                        <a href="ensamble">
+                                        <a href="">
                                             <img class="" src="./images/2.png" alt=""
                                                 style="top: -10%;
                                             position: relative; width: 70% !important;">
@@ -83,9 +83,11 @@
                                     style="max-width: 15rem; height: 15rem;">
                                     <div class="card-header">Ensamble</div>
                                     <div class="card-body">
-                                        <img class="w-100" src="./images/4.png" alt=""
-                                            style="top: -10%;
-                                        position: relative; width: 70% !important;">
+                                        <a href="ensamble">
+                                            <img class="w-100" src="./images/4.png" alt=""
+                                                style="top: -10%;
+                                                position: relative; width: 70% !important;">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="card text-bg-warning mb-3 mx-3 text-center fs-3 rounded-5"

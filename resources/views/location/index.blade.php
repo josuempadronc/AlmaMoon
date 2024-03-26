@@ -20,12 +20,19 @@
                             <span id="card_title">
                                 {{ __('Ubicacion') }}
                             </span>
-
                             <div class="float-right">
-                                <a href="{{ route('locations.create') }}" class="btn btn-primary btn-sm float-right"
-                                    data-placement="left">
-                                    <i class="bi bi-plus-circle"></i>
-                                </a>
+                                @auth
+                                    @if (auth()->user()->role === '1')
+                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#ModalImport">
+                                            <i class="bi bi-file-earmark-arrow-up"></i>
+                                        </button>
+                                        <a href="{{ route('locations.create') }}" class="btn btn-primary btn-sm float-right"
+                                        data-placement="left">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </a>
+                                    @endif
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -96,7 +103,27 @@
                         </div>
                     </div>
                 </div>
-                {!! $locations->links() !!}
+                {{-- {!! $locations->links() !!} --}}
+            </div>
+        </div>
+    </div>
+     <!-- Modal -->
+     <div class="modal fade" id="ModalImport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Importar Ubicaciones</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('location.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="Ubicaciones" accept=".txt">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Subir</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

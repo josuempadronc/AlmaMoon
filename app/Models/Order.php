@@ -44,7 +44,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_id', 'rif', 'destination', 'movementDeatil_id', 'finishedProduct_id', 'assembledProduct_id','customer_id', 'amount', 'status'];
+    protected $fillable = ['name_id', 'rif', 'destination', 'movementDeatil_id', 'finishedProduct_id', 'assembledProduct_id', 'customer_id', 'amount', 'status'];
 
 
     /**
@@ -85,7 +85,11 @@ class Order extends Model
      */
     public function finishedProducts()
     {
-        return $this->belongsToMany(FinishedProduct::class, 'order_finished_product', 'order_id', 'finished_product_id')->withPivot('amount', 'color_id');
+        return $this->belongsToMany(
+            FinishedProduct::class,
+            'order_finished_product',
+            'order_id',
+            'finished_product_id'
+        )->withPivot('amount', 'color_id');
     }
-
 }

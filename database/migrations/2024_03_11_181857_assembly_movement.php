@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assembly_movement', function (Blueprint $table) {
+        Schema::create('assembly_movements', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->unsignedBigInteger('typeMovement_id');
@@ -46,6 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assembly_movement');
+        Schema::dropIfExists('assembly_movements');
     }
 };

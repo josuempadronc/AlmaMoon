@@ -30,33 +30,11 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function create()
-     {
-         $customer = new Customer();
-         return view('customer.create', compact('customer'));
-
-     }
-    // public function create(Request $request)
-    // {
-    //     // Validar los datos enviados por el usuario
-    //     $request->validate([
-    //         'name' => 'required',
-    //         'CI/Rif' => 'required',
-    //         'destination_id' => 'required',
-    //     ]);
-
-    //     // Crear un nuevo objeto Customer con los datos proporcionados
-    //     $customer = new Customer();
-    //     $customer->name = $request->input('name');
-    //     $customer->CI = $request->input('CI/Rif');
-    //     $customer->location = $request->input('destination_id');
-
-    //     // Guardar el nuevo cliente en la base de datos
-    //     $customer->save();
-
-    //     // Redirigir al usuario a la página de éxito o mostrar un mensaje de éxito
-    //     return redirect()->route('success')->with('message', 'Cliente creado exitosamente.');
-    //}
+    public function create()
+    {
+        $customer = new Customer();
+        return view('customer.create', compact('customer'));
+    }
 
     public function getCustomerData(Request $request)
     {
@@ -76,6 +54,32 @@ class CustomerController extends Controller
 
         // Si no se encontró el cliente, devolver una respuesta de error
         return response()->json(['error' => 'Cliente no encontrado'], 404);
+    }
+
+    /**
+     * Show the form for Importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import(Request $request)
+    {
+        $archivo = $request->file('Clientes');
+        $contenido = file($archivo->getRealPath());
+
+        // Empezamos desde la segunda línea para omitir el encabezado
+        for ($i = 1; $i < count($contenido); $i++) {
+            $linea = trim($contenido[$i]);
+            $campos = explode(',', $linea);
+
+            $Customer = new Customer();
+            $Customer->name = $campos[0];
+            $Customer->ci = $campos[1];
+            $Customer->location = $campos[2];
+            $Customer->save();
+        }
+
+        return redirect()->route('customer.index')
+            ->with('success', 'Se han importado los Clientes correctamente.');
     }
 
     /**

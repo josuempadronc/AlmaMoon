@@ -13,14 +13,25 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Product Type Assembly</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title"> Actualizar Tipo de Producto</span>
+                            <div class="float-right">
+                                <div class="float-right">
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ route('product-type-assemblies.index') }}">
+                                            <i class="bi bi-backspace"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('product-type-assemblies.update', $productTypeAssembly->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('product-type-assembly.form')
+                            @include('Ensamble/product-type-assembly.form')
 
                         </form>
                     </div>

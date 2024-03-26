@@ -13,14 +13,25 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Assembly Input</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title"> Nuevo Insumo</span>
+                            <div class="float-right">
+                                <div class="float-right">
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ route('assembly-inputs.index') }}">
+                                            <i class="bi bi-backspace"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('assembly-inputs.update', $assemblyInput->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('assembly-input.form')
+                            @include('Ensamble/assembly-input.form')
 
                         </form>
                     </div>

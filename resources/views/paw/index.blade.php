@@ -22,12 +22,27 @@
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('paws.create') }}" class="btn btn-primary btn-sm float-right"
-                                    data-placement="left">
-                                    <i class="bi bi-plus-circle"></i>
-                                </a>
+                                @auth
+                                    @if (auth()->user()->role === '1')
+                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#ModalImport">
+                                            <i class="bi bi-file-earmark-arrow-up"></i>
+                                        </button>
+                                        <a href="{{ route('paws.create') }}" class="btn btn-primary btn-sm float-right"
+                                            data-placement="left">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </a>
+                                    @endif
+                                    @if (auth()->user()->role === '2')
+                                        <a href="{{ route('paws.create') }}" class="btn btn-primary btn-sm float-right"
+                                            data-placement="left">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </a>
+                                    @endif
+                                @endauth
                             </div>
                         </div>
+
                     </div>
                     <div class="card-body" style=" height: 600px !important; overflow: auto;">
                         <div class="table-responsive">
@@ -35,9 +50,9 @@
                                 <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
-                                            <th>No</th>
+                                            {{-- <th></th> --}}
 
-                                            <th>Nombre</th>
+                                            <th class="px-4">Nombre</th>
 
                                             <th></th>
                                         </tr>
@@ -45,9 +60,9 @@
                                     <tbody>
                                         @foreach ($paws as $paw)
                                             <tr>
-                                                <td>{{ ++$i }}</td>
+                                                {{-- <td>{{ ++$i }}</td> --}}
 
-                                                <td>{{ $paw->name }}</td>
+                                                <td class="px-4">{{ $paw->name }}</td>
 
                                                 <td>
                                                     @auth
@@ -95,6 +110,25 @@
                     </div>
                 </div>
                 {{-- {!! $paws->links() !!} --}}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModalImport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Importar Patas</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('pata.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="Patas" accept=".txt">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Subir</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

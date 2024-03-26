@@ -10,18 +10,24 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Product Type Assembly</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('product-type-assemblies.index') }}"> {{ __('Back') }}</a>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title">  {{ $productTypeAssembly->name }}</span>
+                            <div class="float-right">
+                                <div class="float-right">
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ route('product-type-assemblies.index') }}">
+                                            <i class="bi bi-backspace"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="card-body">
 
                         <div class="form-group">
-                            <strong>Name:</strong>
+                            <strong>Nombre:</strong>
                             {{ $productTypeAssembly->name }}
                         </div>
 

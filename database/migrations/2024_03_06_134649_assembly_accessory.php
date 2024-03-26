@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assembly_accessory', function (Blueprint $table) {
+        Schema::create('assembly_accessories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('color_id');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assembly_accessory');
+        Schema::dropIfExists('assembly_accessories');
     }
 };

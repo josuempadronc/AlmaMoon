@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assembly_structure', function (Blueprint $table) {
+        Schema::create('assembly_structures', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('name_input');
-            $table->foreign('name_input')->references('id')->on('assembly_input');
+            $table->foreign('name_input')->references('id')->on('assembly_inputs');
             $table->unsignedBigInteger('color_input');
-            $table->foreign('color_input')->references('id')->on('assembly_input');
+            $table->foreign('color_input')->references('id')->on('assembly_inputs');
             $table->unsignedBigInteger('accessory_id');
-            $table->foreign('accessory_id')->references('id')->on('assembly_accessory');
+            $table->foreign('accessory_id')->references('id')->on('assembly_accessories');
             $table->string('amount') ->nullable();
             $table->timestamps();
         });

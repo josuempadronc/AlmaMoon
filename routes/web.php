@@ -36,10 +36,38 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
         Route::post('/get-customer-data', [App\Http\Controllers\CustomerController::class,'getCustomerData'])->name('order.get-customer-data');
-        Route::get('orders/{id}/pdf', [App\Http\Controllers\OrderController::class, 'pdf'])->name('orders.pdf');
         Route::put('/orders/{id}', [App\Http\Controllers\OrderController::class, 'actualizar'])->name('orders.actualizar');
 
+        // Generador de PDF
+        Route::get('orders/{id}/pdf', [App\Http\Controllers\OrderController::class, 'pdf'])->name('orders.pdf');
 
+        // End Generador de PDF
+        // Calculadora de Productos
+        Route::post('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats.calculator');
+        Route::get('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats');
+
+        // End Calculadora de Productos
+
+        // Import txt
+        Route::post('/finished-products/import', [App\Http\Controllers\FinishedProductController::class, 'import'])->name('finished-products.import');
+        Route::post('/color/import', [App\Http\Controllers\ColorController::class, 'import'])->name('color.import');
+        Route::post('/paws/import', [App\Http\Controllers\PawController::class, 'import'])->name('pata.import');
+        Route::post('/destinations/import', [App\Http\Controllers\DestinationController::class, 'import'])->name('Destination.import');
+        Route::post('/locations/import', [App\Http\Controllers\LocationController::class, 'import'])->name('location.import');
+        Route::post('/measures/import', [App\Http\Controllers\MeasureController::class, 'import'])->name('measure.import');
+        Route::post('/movement-details/import', [App\Http\Controllers\MovementDetailController::class, 'import'])->name('DetallesMoviminetos.import');
+        Route::post('/origins/import', [App\Http\Controllers\OriginController::class, 'import'])->name('origen.import');
+        Route::post('/suppliers/import', [App\Http\Controllers\SupplierController::class, 'import'])->name('supplier.import');
+        Route::post('/type-movements/import', [App\Http\Controllers\TypeMovementController::class, 'import'])->name('typeMovement.import');
+        Route::post('/customer/import', [App\Http\Controllers\CustomerController::class, 'import'])->name('customer.import');
+        Route::post('/assembly-accessories/import', [App\Http\Controllers\AssemblyAccessoryController::class, 'import'])->name('AssemblyAccessory.import');
+        Route::post('/product-type-assemblies/import', [App\Http\Controllers\ProductTypeAssemblyController::class, 'import'])->name('ProductTypeAssembly.import');
+        Route::post('/semi-finished-products/import', [App\Http\Controllers\SemiFinishedProductController::class, 'import'])->name('semi-finished-products.import');
+        Route::post('/raw-materials/import', [App\Http\Controllers\RawMaterialController::class, 'import'])->name('raw-materials.import');
+
+        // End Import txt
+
+       // Almacen
         Route::resource('color', App\Http\Controllers\ColorController::class);
         Route::resource('destinations', App\Http\Controllers\DestinationController::class)->middleware('auth');
         Route::resource('finished-products', App\Http\Controllers\FinishedProductController::class)->middleware('auth');
@@ -62,6 +90,7 @@ Route::group(['middleware' => ['auth']], function () {
         // End Almacen
 
         // Ensamble
+
         Route::resource('assembly-inputs', App\Http\Controllers\AssemblyInputController::class)->middleware('auth');
         Route::resource('assembly-structures', App\Http\Controllers\AssemblyStructureController::class)->middleware('auth');
         Route::resource('assembly-accessories',App\Http\Controllers\AssemblyAccessoryController::class)->middleware('auth');
@@ -69,6 +98,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('product-sheats', App\http\Controllers\ProductSheatController::class)->middleware('auth');
         Route::resource('assembly-movements', App\http\Controllers\AssemblyMovementController::class)->middleware('auth');
         Route::resource('assembly-movement-inputs', App\http\Controllers\AssemblyMovementInputController::class)->middleware('auth');
+
         // End Ensamble
 
 });

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assembly_movement_input', function (Blueprint $table) {
+        Schema::create('assembly_movement_inputs', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->unsignedBigInteger('typeMovement_id');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('input_id')->nullable();
             $table->foreign('input_id')
                     ->references('id')
-                    ->on('assembly_input');
+                    ->on('assembly_inputs');
             $table->string('amount') ->nullable();
             $table->unsignedBigInteger('color_id')->nullable();
             $table->foreign('color_id')
@@ -46,6 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assembly_movement_input');
+        Schema::dropIfExists('assembly_movement_inputs');
     }
 };

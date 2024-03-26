@@ -10,9 +10,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $name
  * @property $color_id
+ * @property $input_id
+ * @property $amount
  * @property $created_at
  * @property $updated_at
  *
+ * @property AssemblyInput $assemblyInput
  * @property Color $color
  * @property ProductComponent[] $productComponents
  * @package App
@@ -20,10 +23,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProductSheat extends Model
 {
-    
+
     static $rules = [
-		'name' => 'required',
-		'color_id' => 'required',
+        'name' => 'required',
+        'color_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -33,8 +36,16 @@ class ProductSheat extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','color_id'];
+    protected $fillable = ['name', 'color_id'];
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function assemblyInput()
+    {
+        return $this->hasOne('App\Models\AssemblyInput', 'id', 'assembly_input_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -43,14 +54,20 @@ class ProductSheat extends Model
     {
         return $this->hasOne('App\Models\Color', 'id', 'color_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function productComponents()
+    // public function productComponents()
+    // {
+    //     return $this->hasMany('App\Models\ProductComponent', 'product_sheat_id', 'id');
+    // }
+    public function assemblyInputs()
     {
-        return $this->hasMany('App\Models\ProductComponent', 'product_sheat_id', 'id');
+        return $this->belongsToMany(
+            AssemblyInput::class,
+            'product_components'
+        )->withPivot('amount');
     }
-    
 
 }

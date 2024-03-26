@@ -18,10 +18,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::paginate();
+        $colors = Color::all();
 
-        return view('color.index', compact('colors'))
-            ->with('i', (request()->input('page', 1) - 1) * $colors->perPage());
+        return view('color.index', compact('colors'));
     }
 
     /**
@@ -33,6 +32,30 @@ class ColorController extends Controller
     {
         $color = new Color();
         return view('color.create', compact('color'));
+    }
+     /**
+     * Show the form for Importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function import(Request $request)
+    {
+        $archivo = $request->file('Colores');
+        $contenido = file($archivo->getRealPath());
+
+        // Empezamos desde la segunda línea para omitir el encabezado
+        for ($i = 1; $i < count($contenido); $i++) {
+            $linea = trim($contenido[$i]);
+            $campos = explode(',', $linea);
+
+            $Color = new Color();
+            $Color->name = $campos[0];
+            $Color->save();
+        }
+
+        return redirect()->route('color.index')
+        ->with('success', 'Se han importado los Colores correctamente.');
     }
 
     /**

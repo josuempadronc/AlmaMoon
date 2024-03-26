@@ -7,9 +7,9 @@
             {!! $errors->first('product_sheat_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('component') }}
-            {{ Form::text('component', $productComponent->component, ['class' => 'form-control' . ($errors->has('component') ? ' is-invalid' : ''), 'placeholder' => 'Component']) }}
-            {!! $errors->first('component', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('input_id') }}
+            {{ Form::text('input_id', $productComponent->input_id, ['class' => 'form-control' . ($errors->has('input_id') ? ' is-invalid' : ''), 'placeholder' => 'Input Id']) }}
+            {!! $errors->first('input_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('amount') }}

@@ -35,6 +35,31 @@ class RawMaterialController extends Controller
         return view('raw-material.create', compact('rawMaterial'));
     }
 
+     /**
+     * Show the form for Importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import(Request $request)
+    {
+        $archivo = $request->file('Matreria Prima');
+        $contenido = file($archivo->getRealPath());
+
+        // Empezamos desde la segunda línea para omitir el encabezado
+        for ($i = 1; $i < count($contenido); $i++) {
+            $linea = trim($contenido[$i]);
+            $campos = explode(',', $linea);
+
+            $Destination = new RawMaterial();
+            $Destination->name = $campos[0];
+            $Destination->save();
+        }
+
+        return redirect()->route('raw-materials.index')
+        ->with('success', 'Se han importado las Ubicaciones correctamente.');
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

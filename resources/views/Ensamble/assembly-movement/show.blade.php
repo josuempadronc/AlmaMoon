@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('template_title')
-    {{ $assemblyMovement->name ?? "{{ __('Show') Assembly Movement" }}
-@endsection
 
 @section('content')
     <section class="content container-fluid">
@@ -10,61 +7,70 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Assembly Movement</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('assembly-movements.index') }}"> {{ __('Back') }}</a>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title">Movimiento</span>
+                            <div class="float-right">
+                                <div class="float-right">
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ route('assembly-movements.index') }}">
+                                            <i class="bi bi-backspace"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        
-                        <div class="form-group">
-                            <strong>Date:</strong>
-                            {{ $assemblyMovement->date }}
+                        <div class="row">
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value=" {{ $assemblyMovement->date }}" disabled readonly>
+                            </div>
+                            <div class="col m-2 m-2">
+                                <input type="text" class="form-control" value=" {{ $assemblyMovement->typeMovement->name }}"
+                                    disabled readonly>
+                            </div>
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value="{{ $assemblyMovement->order }}"
+                                    disabled readonly>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <strong>Typemovement Id:</strong>
-                            {{ $assemblyMovement->typeMovement_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Order:</strong>
-                            {{ $assemblyMovement->order }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Note:</strong>
-                            {{ $assemblyMovement->note }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Finishedproduct Id:</strong>
-                            {{ $assemblyMovement->finishedProduct_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Amount:</strong>
-                            {{ $assemblyMovement->amount }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Color Id:</strong>
-                            {{ $assemblyMovement->color_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Origin Id:</strong>
-                            {{ $assemblyMovement->origin_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Movementdeatil Id:</strong>
-                            {{ $assemblyMovement->movementDeatil_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Location Id:</strong>
-                            {{ $assemblyMovement->location_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Observation:</strong>
-                            {{ $assemblyMovement->observation }}
+                        <div class="row">
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value=" {{ $assemblyMovement->note }}" disabled readonly>
+                            </div>
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value="{{ $assemblyMovement->finishedProduct->name }}" disabled readonly>
+                            </div>
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value="{{ $assemblyMovement->amount }}" disabled readonly>
+                            </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value="{{ $assemblyMovement->colors->id }}" disabled
+                                    readonly>
+                            </div>
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value=" {{ $assemblyMovement->origin->name }}" disabled
+                                    readonly>
+                            </div>
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value=" {{ $assemblyMovement->movementDeatil->name }}" disabled
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col m-2">
+                                <input type="text" class="form-control"
+                                    value="{{ $assemblyMovement->location->name }}" disabled readonly>
+                            </div>
+                            <div class="col m-2">
+                                <input type="text" class="form-control" value=" {{ $assemblyMovement->observation }}" disabled
+                                    readonly>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

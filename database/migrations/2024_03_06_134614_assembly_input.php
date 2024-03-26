@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assembly_input', function (Blueprint $table) {
+        Schema::create('assembly_inputs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('color_id');
             $table->foreign('color_id')->references('id')->on('colors');
-            $table->string('amount') ->nullable();
+            // $table->string('amount') ->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assembly_input');
+        Schema::dropIfExists('assembly_inputs');
     }
 };

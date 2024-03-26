@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Color extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
     ];
@@ -39,9 +39,9 @@ class Color extends Model
      */
     public function finishedProducts()
     {
-        return $this->hasMany('App\Models\FinishedProduct', 'color_id', 'id');
+        return $this->belongsToMany('App\Models\FinishedProduct', 'color_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -49,6 +49,6 @@ class Color extends Model
     {
         return $this->hasMany('App\Models\SemiFinishedProduct', 'color_id', 'id');
     }
-    
+
 
 }

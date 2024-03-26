@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('template_title')
-    Pedidos
-@endsection
-
 @section('content')
     @if ($message = Session::get('success'))
         <div class="alert alert-success position-fixed h-20 w-25 top-10 z-1" style="left: 46%;">
@@ -18,7 +14,6 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{-- {{ __('Order') }} --}}
                                 Pedidos
                             </span>
 

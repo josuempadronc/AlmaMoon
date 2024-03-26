@@ -20,7 +20,7 @@ class ProductComponentController extends Controller
     {
         $productComponents = ProductComponent::paginate();
 
-        return view('Ensamble/product-component.index', compact('productComponents'))
+        return view('product-component.index', compact('productComponents'))
             ->with('i', (request()->input('page', 1) - 1) * $productComponents->perPage());
     }
 
@@ -32,7 +32,7 @@ class ProductComponentController extends Controller
     public function create()
     {
         $productComponent = new ProductComponent();
-        return view('Ensamble/product-component.create', compact('productComponent'));
+        return view('product-component.create', compact('productComponent'));
     }
 
     /**
@@ -61,7 +61,7 @@ class ProductComponentController extends Controller
     {
         $productComponent = ProductComponent::find($id);
 
-        return view('Ensamble/product-components.show', compact('productComponent'));
+        return view('product-component.show', compact('productComponent'));
     }
 
     /**
@@ -74,7 +74,7 @@ class ProductComponentController extends Controller
     {
         $productComponent = ProductComponent::find($id);
 
-        return view('Ensamble/product-components.edit', compact('productComponent'));
+        return view('product-component.edit', compact('productComponent'));
     }
 
     /**

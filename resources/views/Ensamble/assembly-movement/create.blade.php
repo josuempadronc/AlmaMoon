@@ -13,13 +13,25 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Assembly Movement</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title"> Nuevo Movimiento</span>
+                            <div class="float-right">
+                                <div class="float-right">
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ route('assembly-movements.index') }}">
+                                            <i class="bi bi-backspace"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('assembly-movements.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('assembly-movements.store') }}" role="form"
+                            enctype="multipart/form-data">
                             @csrf
 
-                            @include('assembly-movement.form')
+                            @include('Ensamble/assembly-movement.form')
 
                         </form>
                     </div>

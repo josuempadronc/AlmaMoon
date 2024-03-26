@@ -36,6 +36,29 @@ class MovementDetailController extends Controller
     }
 
     /**
+     * Show the form for Importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import(Request $request)
+    {
+        $archivo = $request->file('DetallesMoviminetos');
+        $contenido = file($archivo->getRealPath());
+
+        // Empezamos desde la segunda línea para omitir el encabezado
+        for ($i = 1; $i < count($contenido); $i++) {
+            $linea = trim($contenido[$i]);
+            $campos = explode(',', $linea);
+
+            $MovementDetail = new MovementDetail();
+            $MovementDetail->name = $campos[0];
+            $MovementDetail->save();
+        }
+
+        return redirect()->route('movement-details.index')
+        ->with('success', 'Se han importado los Detalles de Movimineto correctamente.');
+    }
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request

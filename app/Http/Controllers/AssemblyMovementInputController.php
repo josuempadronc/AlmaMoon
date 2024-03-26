@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\AssemblyMovementInput;
+use App\models\TypeMovement;
+use App\Models\AssemblyInput;
+use App\Models\Color;
+use App\Models\MovementDetail;
+use App\Models\Origin;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 /**
@@ -20,8 +26,16 @@ class AssemblyMovementInputController extends Controller
     {
         $assemblyMovementInputs = AssemblyMovementInput::paginate();
 
-        return view('Ensamble/assembly-movement-input.index', compact('assemblyMovementInputs'))
-            ->with('i', (request()->input('page', 1) - 1) * $assemblyMovementInputs->perPage());
+        return view(
+            'Ensamble/assembly-movement-input.index',
+            compact('assemblyMovementInputs')
+        )
+            ->with(
+                'i',
+                (request()
+                    ->input('page', 1) - 1) * $assemblyMovementInputs
+                    ->perPage()
+            );
     }
 
     /**
@@ -32,7 +46,24 @@ class AssemblyMovementInputController extends Controller
     public function create()
     {
         $assemblyMovementInput = new AssemblyMovementInput();
-        return view('Ensamble/assembly-movement-input.create', compact('assemblyMovementInput'));
+        $typeMovement = TypeMovement::pluck('id','name');
+        $assemblyInput = AssemblyInput::pluck('id','name');
+        $colors = Color::pluck('id','name');
+        $movementDetail = MovementDetail::pluck('id','name');
+        $origin = Origin::pluck('id','name');
+        $location = Location::pluck('id','name');
+        return view(
+            'Ensamble/assembly-movement-input.create',
+            compact(
+                'assemblyMovementInput',
+                'typeMovement',
+                'assemblyInput',
+                'colors',
+                'movementDetail',
+                'origin',
+                'location',
+            )
+        );
     }
 
     /**
@@ -60,8 +91,25 @@ class AssemblyMovementInputController extends Controller
     public function show($id)
     {
         $assemblyMovementInput = AssemblyMovementInput::find($id);
+        $typeMovement = TypeMovement::pluck('id','name');
+        $assemblyInput = AssemblyInput::pluck('id','name');
+        $colors = Color::pluck('id','name');
+        $movementDetail = MovementDetail::pluck('id','name');
+        $origin = Origin::pluck('id','name');
+        $location = Location::pluck('id','name');
 
-        return view('Ensamble/assembly-movement-input.show', compact('assemblyMovementInput'));
+        return view(
+            'Ensamble/assembly-movement-input.show',
+            compact(
+                'assemblyMovementInput',
+                'typeMovement',
+                'assemblyInput',
+                'colors',
+                'movementDetail',
+                'origin',
+                'location',
+            )
+        );
     }
 
     /**
@@ -74,7 +122,18 @@ class AssemblyMovementInputController extends Controller
     {
         $assemblyMovementInput = AssemblyMovementInput::find($id);
 
-        return view('Ensamble/assembly-movement-input.edit', compact('assemblyMovementInput'));
+        return view(
+            'Ensamble/assembly-movement-input.edit',
+            compact(
+                'assemblyMovementInput',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+            )
+        );
     }
 
     /**

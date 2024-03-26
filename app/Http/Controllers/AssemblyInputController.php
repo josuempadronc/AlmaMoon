@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // use App\Models\AssemblyInput;
 use Illuminate\Http\Request;
 use App\Models\AssemblyInput;
+use App\Models\Color;
 
 /**
  * Class AssemblyInputController
@@ -21,8 +22,13 @@ class AssemblyInputController extends Controller
     {
         $assemblyInputs = AssemblyInput::paginate();
 
-        return view('Ensamble/assembly-input.index', compact('assemblyInputs'))
-            ->with('i', (request()->input('page', 1) - 1) * $assemblyInputs->perPage());
+        return view(
+            'Ensamble/assembly-input.index',
+            compact('assemblyInputs')
+        )
+            ->with('i', (
+                request()
+                ->input('page', 1) - 1) * $assemblyInputs->perPage());
     }
 
     /**
@@ -33,7 +39,14 @@ class AssemblyInputController extends Controller
     public function create()
     {
         $assemblyInput = new AssemblyInput();
-        return view('Ensamble/assembly-input.create', compact('assemblyInput'));
+        $colors = Color::pluck('name','id');
+        return view(
+            'Ensamble/assembly-input.create',
+            compact(
+                'assemblyInput',
+                'colors',
+            )
+        );
     }
 
     /**
@@ -62,7 +75,12 @@ class AssemblyInputController extends Controller
     {
         $assemblyInput = AssemblyInput::find($id);
 
-        return view('Ensamble/assembly-input.show', compact('assemblyInput'));
+        return view(
+            'Ensamble/assembly-input.show',
+            compact(
+                'assemblyInput',
+            )
+        );
     }
 
     /**
@@ -74,8 +92,15 @@ class AssemblyInputController extends Controller
     public function edit($id)
     {
         $assemblyInput = AssemblyInput::find($id);
+        $colors = Color::pluck('name','id');
 
-        return view('Ensamble/assembly-input.edit', compact('assemblyInput'));
+        return view(
+            'Ensamble/assembly-input.edit',
+            compact(
+                'assemblyInput',
+                'colors',
+            )
+        );
     }
 
     /**

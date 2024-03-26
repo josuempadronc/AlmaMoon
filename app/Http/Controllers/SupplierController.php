@@ -36,6 +36,30 @@ class SupplierController extends Controller
     }
 
     /**
+     * Show the form for Importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import(Request $request)
+    {
+        $archivo = $request->file('Proveedores');
+        $contenido = file($archivo->getRealPath());
+
+        // Empezamos desde la segunda línea para omitir el encabezado
+        for ($i = 1; $i < count($contenido); $i++) {
+            $linea = trim($contenido[$i]);
+            $campos = explode(',', $linea);
+
+            $Supplier = new Supplier();
+            $Supplier->name = $campos[0];
+            $Supplier->save();
+        }
+
+        return redirect()->route('suppliers.index')
+        ->with('success', 'Se han importado los Proveedores correctamente.');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request

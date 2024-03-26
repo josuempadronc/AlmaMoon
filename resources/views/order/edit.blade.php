@@ -109,37 +109,6 @@
                                         </div>
 
                                     </div>
-                                    {{-- <div id="items-container">
-                                        @if (!empty($order->orderItems))
-                                            @foreach ($order->orderItems as $index => $orderItem)
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            {{ Form::label('Producto') }}
-                                                            {{ Form::select('finishedProduct_id['.$index.']', $FinishedProduct, $orderItem->finishedProduct_id ?? '', ['class' => 'form-control product', 'placeholder' => 'Producto']) }}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            {{ Form::label('Color') }}
-                                                            {{ Form::select('color_id['.$index.']', $Color, $orderItem->color ?? '', ['class' => 'form-control product', 'placeholder' => 'Color']) }}
-                                                            {!! $errors->first('color', '<div class="invalid-feedback">:message</div>') !!}
-                                                        </div>
-                                                    <div class="col">
-                                                        <div class="form-group">
-                                                            {{ Form::label('Cantidad') }}
-                                                            <div class="d-flex">
-                                                                {{ Form::text('amount['.$index.']', $orderItem->amount, ['class' => 'form-control quantity', 'placeholder' => 'Cantidad']) }}
-                                                                <button type="button" id="add-item" class="btn btn-primary ms-3">Agregar</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                    </div> --}}
-
-
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group">
@@ -157,10 +126,6 @@
                                     <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
                                 </div>
                             </div>
-
-
-
-
                         </form>
                     </div>
                 </div>
@@ -168,7 +133,6 @@
         </div>
     </section>
 @endsection
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

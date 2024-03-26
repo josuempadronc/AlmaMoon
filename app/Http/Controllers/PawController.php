@@ -18,10 +18,9 @@ class PawController extends Controller
      */
     public function index()
     {
-        $paws = Paw::paginate();
+        $paws = Paw::all();
 
-        return view('paw.index', compact('paws'))
-            ->with('i', (request()->input('page', 1) - 1) * $paws->perPage());
+        return view('paw.index', compact('paws'));
     }
 
     /**
@@ -34,6 +33,31 @@ class PawController extends Controller
         $paw = new Paw();
         return view('paw.create', compact('paw'));
     }
+
+    /**
+     * Show the form for Importing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     public function import(Request $request)
+     {
+         $archivo = $request->file('Patas');
+         $contenido = file($archivo->getRealPath());
+
+         // Empezamos desde la segunda línea para omitir el encabezado
+         for ($i = 1; $i < count($contenido); $i++) {
+             $linea = trim($contenido[$i]);
+             $campos = explode(',', $linea);
+
+             $Paw = new Paw();
+             $Paw->name = $campos[0];
+             $Paw->save();
+         }
+
+         return redirect()->route('paws.index')
+         ->with('success', 'Se han importado los Patas correctamente.');
+     }
 
     /**
      * Store a newly created resource in storage.

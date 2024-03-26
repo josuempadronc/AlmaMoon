@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('template_title')
-    {{ __('Create') }} Assembly Movement Input
-@endsection
-
 @section('content')
     <section class="content container-fluid">
         <div class="row">
@@ -13,13 +9,26 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Assembly Movement Input</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title">
+                                <h3>Nuevo Insumo</h3>
+                            </span>
+                            <div class="float-right">
+                                <div class="float-right">
+                                    <div class="float-right">
+                                        <a class="btn btn-primary" href="{{ route('assembly-movement-inputs.index') }}">
+                                            <i class="bi bi-backspace"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('assembly-movement-inputs.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('assembly-movement-input.form')
+                            @include('Ensamble/assembly-movement-input.form')
 
                         </form>
                     </div>

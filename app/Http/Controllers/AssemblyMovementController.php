@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\AssemblyMovement;
+use App\Models\AssemblyMovementInput;
+use App\models\FinishedProduct;
+use App\Models\AssemblyInput;
+use App\Models\Color;
+use App\Models\MovementDetail;
+use App\Models\Origin;
+use App\Models\Location;
+use App\Models\TypeMovement;
 use Illuminate\Http\Request;
 
 /**
@@ -20,8 +28,13 @@ class AssemblyMovementController extends Controller
     {
         $assemblyMovements = AssemblyMovement::paginate();
 
-        return view('Ensamble/assembly-movement.index', compact('assemblyMovements'))
-            ->with('i', (request()->input('page', 1) - 1) * $assemblyMovements->perPage());
+        return view(
+            'Ensamble/assembly-movement.index',
+            compact('assemblyMovements')
+        )
+            ->with('i', (request()
+                ->input('page', 1) - 1) * $assemblyMovements
+                ->perPage());
     }
 
     /**
@@ -32,7 +45,29 @@ class AssemblyMovementController extends Controller
     public function create()
     {
         $assemblyMovement = new AssemblyMovement();
-        return view('Ensamble/assembly-movement.create', compact('assemblyMovement'));
+        $assemblyMovementInput = AssemblyMovementInput::pluck('id', 'name');
+        $finishedProduct = FinishedProduct::pluck('id', 'name');
+        $typeMovement = TypeMovement::pluck('id', 'name');
+        $assemblyInput = AssemblyInput::pluck('id', 'name');
+        $colors = Color::pluck('id', 'name');
+        $movementDetail = MovementDetail::pluck('id', 'name');
+        $origin = Origin::pluck('id', 'name');
+        $location = Location::pluck('id', 'name');
+        return view(
+            'Ensamble/assembly-movement.create',
+            compact(
+                'assemblyMovement',
+                'assemblyMovementInput',
+                'finishedProduct',
+                'typeMovement',
+                'assemblyInput',
+                'colors',
+                'movementDetail',
+                'origin',
+                'location',
+
+            )
+        );
     }
 
     /**
@@ -47,7 +82,8 @@ class AssemblyMovementController extends Controller
 
         $assemblyMovement = AssemblyMovement::create($request->all());
 
-        return redirect()->route('assembly-movements.index')
+        return redirect()
+            ->route('assembly-movements.index')
             ->with('success', 'AssemblyMovement created successfully.');
     }
 
@@ -61,7 +97,10 @@ class AssemblyMovementController extends Controller
     {
         $assemblyMovement = AssemblyMovement::find($id);
 
-        return view('Ensamble/assembly-movement.show', compact('assemblyMovement'));
+        return view(
+            'Ensamble/assembly-movement.show',
+            compact('assemblyMovement')
+        );
     }
 
     /**
@@ -73,8 +112,28 @@ class AssemblyMovementController extends Controller
     public function edit($id)
     {
         $assemblyMovement = AssemblyMovement::find($id);
-
-        return view('Ensamble/assembly-movement.edit', compact('assemblyMovement'));
+        $assemblyMovementInput = AssemblyMovementInput::pluck('id', 'name');
+        $finishedProduct = FinishedProduct::pluck('id', 'name');
+        $typeMovement = TypeMovement::pluck('id', 'name');
+        $assemblyInput = AssemblyInput::pluck('id', 'name');
+        $colors = Color::pluck('id', 'name');
+        $movementDetail = MovementDetail::pluck('id', 'name');
+        $origin = Origin::pluck('id', 'name');
+        $location = Location::pluck('id', 'name');
+        return view(
+            'Ensamble/assembly-movement.edit',
+            compact(
+                'assemblyMovement',
+                'assemblyMovementInput',
+                'finishedProduct',
+                'typeMovement',
+                'assemblyInput',
+                'colors',
+                'movementDetail',
+                'origin',
+                'location',
+            )
+        );
     }
 
     /**
@@ -90,7 +149,8 @@ class AssemblyMovementController extends Controller
 
         $assemblyMovement->update($request->all());
 
-        return redirect()->route('assembly-movements.index')
+        return redirect()
+            ->route('assembly-movements.index')
             ->with('success', 'AssemblyMovement updated successfully');
     }
 
@@ -103,7 +163,8 @@ class AssemblyMovementController extends Controller
     {
         $assemblyMovement = AssemblyMovement::find($id)->delete();
 
-        return redirect()->route('assembly-movements.index')
+        return redirect()
+            ->route('assembly-movements.index')
             ->with('success', 'AssemblyMovement deleted successfully');
     }
 }

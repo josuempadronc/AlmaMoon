@@ -7,6 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
 
     <title>{{ config('app.name', 'MonnPlast') }}</title>
 
@@ -60,7 +61,7 @@
                                             <a class="nav-link p-2 mb-2"
                                                 href="{{ URL::to('finished-products') }}">{{ __('Productos Terminados') }}</a>
                                             <a class="nav-link p-2 mb-2"
-                                                href="{{ URL::to('assembled-products') }}">{{ __('Productos Ensamblados') }}</a>
+                                                {{-- href="{{ URL::to('assembled-products') }}">{{ __('Productos Ensamblados') }}</a> --}}
                                             <a class="nav-link p-2 mb-2"
                                                 href="{{ URL::to('semi-finished-products') }}">{{ __('Productos SemiTerminados') }}</a>
                                             <a class="nav-link p-2 mb-2"
@@ -290,7 +291,7 @@
                     <div class="col-auto" style=" height: 100vh !important; background-color: #152193 !important;">
                         <div id="sidebar" class="collapse collapse-horizontal show ">
                             {{-- LOGO --}}
-                            <a href="{{ url('almacen') }}">
+                            <a href="{{ url('ensamble') }}">
                                 <img src="/images/logoWhite.png" class="w-50 mt-2"
                                     style="left: 15%; position: relative; width: 125px !important;">
                             </a>
@@ -307,8 +308,8 @@
                                     <a class="nav-link p-2 mb-2"
                                         href="{{ URL::to('product-sheats') }}">{{ __('Ficha Producto') }}</a>
                                     <a class="nav-link p-2 mb-2"
-                                        {{-- href="{{ URL::to('assembly-movement') }}">{{ __('Moviminetos') }}</a> --}}
-                                    {{-- <a class="nav-link p-2 mb-2" --}}
+                                        href="{{ URL::to('assembly-structures') }}">{{ __('Estructuras Metalicas') }}</a>
+                                    <a class="nav-link p-2 mb-2"
                                         href="{{ URL::to('orders') }}">{{ __('Pedidos') }}</a>
                                 </div>
                                 {{-- END LINK MENU --}}
@@ -358,8 +359,6 @@
                                                 href="{{ URL::to('suppliers') }}">{{ __('Proveedores') }}</a> --}}
                                             <a class="nav-link p-2 mb-2"
                                                 href="{{ URL::to('type-movements') }}">{{ __('Tipos de Movimientos') }}</a>
-                                            <a class="nav-link p-2 mb-2"
-                                                href="{{ URL::to('assembly-structures') }}">{{ __('Estructuras Metalicas') }}</a>
                                             <a class="nav-link p-2 mb-2"
                                                 href="{{ URL::to('assembly-accessories') }}">{{ __('Accesorio') }}</a>
                                             <a class="nav-link p-2 mb-2"

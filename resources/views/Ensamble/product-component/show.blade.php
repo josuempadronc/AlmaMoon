@@ -25,8 +25,8 @@
                             {{ $productComponent->product_sheat_id }}
                         </div>
                         <div class="form-group">
-                            <strong>Component:</strong>
-                            {{ $productComponent->component }}
+                            <strong>Input Id:</strong>
+                            {{ $productComponent->input_id }}
                         </div>
                         <div class="form-group">
                             <strong>Amount:</strong>
