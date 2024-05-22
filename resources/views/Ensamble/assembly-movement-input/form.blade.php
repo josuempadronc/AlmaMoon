@@ -12,7 +12,7 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Tipo de Movimiento') }}
-                    {{ Form::select('typeMovement_id', $typeMovement,$assemblyMovementInput->typeMovement_id, ['class' => 'form-control' . ($errors->has('Tipo de Movimiento') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de Movimiento']) }}
+                    {{ Form::select('typeMovement_id', $typeMovement, $assemblyMovementInput->typeMovement_id, ['class' => 'form-control' . ($errors->has('Tipo de Movimiento') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de Movimiento']) }}
                     {!! $errors->first('Tipo de Movimiento', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
@@ -53,7 +53,7 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Color') }}
-                    {{ Form::Select('color_id',$colors $assemblyMovementInput->color_id, ['class' => 'form-control' . ($errors->has('Color') ? ' is-invalid' : ''), 'placeholder' => 'Color']) }}
+                    {{ Form::Select('color_id',$colors, $assemblyMovementInput->color_id, ['class' => 'form-control' . ($errors->has('Color') ? ' is-invalid' : ''), 'placeholder' => 'Color']) }}
                     {!! $errors->first('Color', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
@@ -69,7 +69,7 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Detalle') }}
-                    {{ Form::select('movementDeatil_id',$movementDetail, $assemblyMovementInput->movementDeatil_id, ['class' => 'Detalle' . ($errors->has('movementDeatil_id') ? ' is-invalid' : ''), 'placeholder' => 'Detalle']) }}
+                    {{ Form::select('movementDeatil_id',$movementDetail, $assemblyMovementInput->movementDeatil_id, ['class' => 'form-control' . ($errors->has('movementDeatil_id') ? ' is-invalid' : ''), 'placeholder' => 'Detalle']) }}
                     {!! $errors->first('Detalle', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>

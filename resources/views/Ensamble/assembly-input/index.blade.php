@@ -71,7 +71,7 @@
                                                 <td>{{ ++$i }}</td>
 
                                                 <td>{{ $assemblyInput->name }}</td>
-                                                <td>{{ $assemblyInput->colors->name }}</td>
+                                                <td>{{ $assemblyInput->color->name }}</td>
                                                 <td>{{ $assemblyInput->amount }}</td>
                                                 <td>
                                                     @auth

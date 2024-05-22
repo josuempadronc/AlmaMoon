@@ -45,7 +45,6 @@ class AssemblyMovementController extends Controller
     public function create()
     {
         $assemblyMovement = new AssemblyMovement();
-        $assemblyMovementInput = AssemblyMovementInput::pluck('id', 'name');
         $finishedProduct = FinishedProduct::pluck('id', 'name');
         $typeMovement = TypeMovement::pluck('id', 'name');
         $assemblyInput = AssemblyInput::pluck('id', 'name');
@@ -57,7 +56,6 @@ class AssemblyMovementController extends Controller
             'Ensamble/assembly-movement.create',
             compact(
                 'assemblyMovement',
-                'assemblyMovementInput',
                 'finishedProduct',
                 'typeMovement',
                 'assemblyInput',

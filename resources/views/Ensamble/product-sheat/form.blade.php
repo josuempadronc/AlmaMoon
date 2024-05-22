@@ -20,7 +20,7 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('Insumo') }}
-                    {{ Form::select('input_id[]', $input, $productSheat->input_id, ['class' => 'form-control' . ($errors->has('Insumo') ? ' is-invalid' : ''), 'placeholder' => 'Insumo']) }}
+                    {{ Form::select('assembly_input_id[]', $input, $productSheat->input_id, ['class' => 'form-control' . ($errors->has('Insumo') ? ' is-invalid' : ''), 'placeholder' => 'Insumo']) }}
                     {!! $errors->first('Insumo', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 <div class="col">
                     <div class="form-group">
                         {{ Form::label('Insumo') }}
-                        {{ Form::select('input_id[]', $input, $productSheat->input_id, ['class' => 'form-control' . ($errors->has('Insumo') ? ' is-invalid' : ''), 'placeholder' => 'Insumo']) }}
+                        {{ Form::select('assembly_input_id[]', $input, $productSheat->input_id, ['class' => 'form-control' . ($errors->has('Insumo') ? ' is-invalid' : ''), 'placeholder' => 'Insumo']) }}
                         {!! $errors->first('Insumo', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
                 </div>

@@ -65,15 +65,15 @@
                                                 <td>{{ ++$i }}</td>
 
                                                 <td>{{ $assemblyMovement->date }}</td>
-                                                <td>{{ $assemblyMovement->typeMovement_id }}</td>
+                                                <td>{{ $assemblyMovement->typeMovement->name }}</td>
                                                 <td>{{ $assemblyMovement->order }}</td>
                                                 <td>{{ $assemblyMovement->note }}</td>
-                                                <td>{{ $assemblyMovement->finishedProduct_id }}</td>
+                                                <td>{{ $assemblyMovement->finishedProduct->name }}</td>
                                                 <td>{{ $assemblyMovement->amount }}</td>
-                                                <td>{{ $assemblyMovement->color_id }}</td>
-                                                <td>{{ $assemblyMovement->origin_id }}</td>
-                                                <td>{{ $assemblyMovement->movementDeatil_id }}</td>
-                                                <td>{{ $assemblyMovement->location_id }}</td>
+                                                <td>{{ $assemblyMovement->colors->name }}</td>
+                                                <td>{{ $assemblyMovement->origin->name }}</td>
+                                                <td>{{ $assemblyMovement->movementDetail->name }}</td>
+                                                <td>{{ $assemblyMovement->location->name }}</td>
                                                 <td>{{ $assemblyMovement->observation }}</td>
                                                 <td>
                                                     @auth
@@ -125,7 +125,6 @@
                         </div>
                     </div>
                 </div>
-                {!! $assemblyMovements->links() !!}
             </div>
         </div>
     </div>

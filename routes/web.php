@@ -40,11 +40,13 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Generador de PDF
         Route::get('orders/{id}/pdf', [App\Http\Controllers\OrderController::class, 'pdf'])->name('orders.pdf');
+        Route::get('product-sheats/{id}/pdf', [App\http\Controllers\ProductSheatController::class, 'pdf'])->name('product-sheats.pdf');
 
         // End Generador de PDF
+        
         // Calculadora de Productos
         Route::post('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats.calculator');
-        Route::get('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats');
+        Route::get('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats.json');
 
         // End Calculadora de Productos
 
@@ -98,7 +100,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('product-sheats', App\http\Controllers\ProductSheatController::class)->middleware('auth');
         Route::resource('assembly-movements', App\http\Controllers\AssemblyMovementController::class)->middleware('auth');
         Route::resource('assembly-movement-inputs', App\http\Controllers\AssemblyMovementInputController::class)->middleware('auth');
-
         // End Ensamble
 
 });
