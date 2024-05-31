@@ -14,7 +14,7 @@
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.bunny.net">
 	<link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<!-- Scripts -->
 	@vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/jquery.min.js'])
@@ -35,13 +35,12 @@
 					<div class="col-auto" style=" height: 100vh !important; background-color: #152193 !important;">
 						<div id="sidebar" class="collapse collapse-horizontal show ">
 							{{-- LOGO --}}
-							<a href="{{ url('almacen') }}">
+							<a href="{{ url('home') }}">
 								<img src="/images/logoWhite.png" class="w-50 mt-2"
 									style="left: 15%; position: relative; width: 125px !important;">
 							</a>
 							{{-- END LOGO --}}
 							{{-- SIDEBAR --}}
-
 							<div id="sidebar-nav"
 								class="list-group border-0 rounded-0 text-sm-start text-white max-vh-100 mx-3 mt-2"
 								style="width: 180px; ">
@@ -100,6 +99,26 @@
 												href="{{ URL::to('assembly-movements') }}">{{ __('Producto Terminado') }}</a>
 											<a class="nav-link p-2 mb-2"
 												href="{{ URL::to('assembly-movement-inputs') }}">{{ __('Insumo') }}</a>
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                        aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                        Progreso de Produccion
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordionFlushExample">
+                                                    <a class="nav-link p-2 mb-2 mt-2"
+                                                        href="{{ URL::to('progress-assambly') }}">{{ __('Ensamble') }}</a>
+                                                    <a class="nav-link p-2 mb-2"
+                                                        href="{{ URL::to('progress-lona') }}">{{ __('Lona') }}</a>
+                                                    <a class="nav-link p-2 mb-2"
+                                                        href="{{ URL::to('progress-serigrafium') }}">{{ __('Serigrafia') }}</a>
+                                                    <a class="nav-link p-2 mb-2"
+                                                        href="{{ URL::to('progress-vulcanizado') }}">{{ __('Vulcanizado') }}</a>
+                                                </div>
+                                            </div>
 										</div>
 									</div>
 

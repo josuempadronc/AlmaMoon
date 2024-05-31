@@ -9,22 +9,18 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Accesorios') }}
+                                {{ __('Ensamble') }}
                             </span>
                             <div class="float-right">
                                 @auth
                                     @if (auth()->user()->role === '1')
-                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#ModalImport">
-                                            <i class="bi bi-file-earmark-arrow-up"></i>
-                                        </button>
-                                        <a href="{{ route('assembly-accessories.create') }}"
+                                        <a href="{{ route('progress-assambly.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     @endif
                                     @if (auth()->user()->role === '3')
-                                        <a href="{{ route('assembly-accessories.create') }}"
+                                        <a href="{{ route('progress-assambly.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
@@ -39,41 +35,47 @@
                         </div>
                     @endif
 
-                    <div class="card-body">
+                    <div class="card-body" style=" height: 600px !important; overflow: auto;">
                         <div class="table-responsive">
-                            @if (count($assemblyAccessories) !== 0)
+                            @if (count($progressAssamblies) !== 0)
                                 <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
 
-                                            <th>Nombre</th>
-                                            <th>Color</th>
+                                            <th>Producto</th>
                                             <th>Cantidad</th>
+                                            <th>Status</th>
+                                            <th>Encargado</th>
+                                            <th>Nota</th>
+                                            <th>Fecha</th>
 
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($assemblyAccessories as $assemblyAccessory)
+                                        @foreach ($progressAssamblies as $progressAssambly)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
 
-                                                <td>{{ $assemblyAccessory->name }}</td>
-                                                <td>{{ $assemblyAccessory->color->name }}</td>
-                                                <td>{{ $assemblyAccessory->amount }}</td>
+                                                <td>{{ $progressAssambly->finishedProduct->name }}</td>
+                                                <td>{{ $progressAssambly->cantidad }}</td>
+                                                <td>{{ $progressAssambly->status }}</td>
+                                                <td>{{ $progressAssambly->encargado }}</td>
+                                                <td>{{ $progressAssambly->nota }}</td>
+                                                <td>{{ $progressAssambly->fecha }}</td>
                                                 <td>
                                                     @auth
                                                         @if (auth()->user()->role === '1')
                                                             <form
-                                                                action="{{ route('assembly-accessories.destroy', $assemblyAccessory->id) }}"
+                                                                action="{{ route('progress-assamblies.destroy',$progressAssambly->id) }}"
                                                                 method="POST">
                                                                 <a class="btn btn-sm btn-primary "
-                                                                    href="{{ route('assembly-accessories.show', $assemblyAccessory->id) }}">
+                                                                    href="{{ route('progress-assamblies.show',$progressAssambly->id) }}">
                                                                     <i class="bi bi-eye-fill"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-success"
-                                                                    href="{{ route('assembly-accessories.edit', $assemblyAccessory->id) }}">
+                                                                    href="{{route('progress-assamblies.edit',$progressAssambly->id) }}">
                                                                     <i class="bi bi-pencil-fill"></i>
                                                                 </a>
                                                                 @csrf
@@ -85,10 +87,10 @@
                                                         @endif
                                                         @if (auth()->user()->role === '3')
                                                             <form
-                                                                action="{{ route('assembly-accessories.destroy', $assemblyAccessory->id) }}"
+                                                                action="{{ route('progress-assamblies.destroy',$progressAssambly->id) }}"
                                                                 method="POST">
                                                                 <a class="btn btn-sm btn-primary "
-                                                                    href="{{ route('assembly-accessories.show', $assemblyAccessory->id) }}">
+                                                                    href="{{ route('assembly-assamblies.show', $assemblyAccessory->id) }}">
                                                                     <i class="bi bi-eye-fill"></i>
                                                                 </a>
                                                                 @csrf
@@ -99,38 +101,16 @@
                                                             </form>
                                                         @endif
                                                     @endauth
-
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                            @else
+                                @else
                                 <h4 class="text-center">No hay registros</h4>
-                            @endif
+                             @endif
                         </div>
                     </div>
-                </div>
-                {{-- {!! $assemblyAccessories->links() !!} --}}
-            </div>
-        </div>
-    </div>
-     <!-- Modal -->
-     <div class="modal fade" id="ModalImport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Importar Accesorios</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('AssemblyAccessory.import') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="file" name="Accesorios" accept=".txt">
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Subir</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

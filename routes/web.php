@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('product-sheats/{id}/pdf', [App\http\Controllers\ProductSheatController::class, 'pdf'])->name('product-sheats.pdf');
 
         // End Generador de PDF
-        
+
         // Calculadora de Productos
         Route::post('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats.calculator');
         Route::get('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats.json');
@@ -100,6 +100,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('product-sheats', App\http\Controllers\ProductSheatController::class)->middleware('auth');
         Route::resource('assembly-movements', App\http\Controllers\AssemblyMovementController::class)->middleware('auth');
         Route::resource('assembly-movement-inputs', App\http\Controllers\AssemblyMovementInputController::class)->middleware('auth');
+        Route::resource('assembly-movement-inputs', App\http\Controllers\AssemblyMovementInputController::class)->middleware('auth');
+
+            // Progreso Productivo
+            Route::resource('progress-assambly', App\http\Controllers\ProgressAssamblyController::class)->middleware('auth');
+            Route::resource('progress-lona', App\http\Controllers\ProgressLonaController::class)->middleware('auth');
+            Route::resource('progress-serigrafium', App\http\Controllers\ProgressSerigrafiumController::class)->middleware('auth');
+            Route::resource('progress-vulcanizado', App\http\Controllers\ProgressVulcanizadoController::class)->middleware('auth');
         // End Ensamble
 
 });
