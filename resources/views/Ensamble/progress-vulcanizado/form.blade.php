@@ -3,8 +3,15 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
+                    {{ Form::label('fecha') }}
+                    {{ Form::date('fecha', $progressVulcanizado->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
+                    {!! $errors->first('fecha', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
                     {{ Form::label('Producto') }}
-                    {{ Form::text('finishedProduct_id', $progressVulcanizado->finishedProduct_id, ['class' => 'form-control' . ($errors->has('Producto') ? ' is-invalid' : ''), 'placeholder' => 'Producto']) }}
+                    {{ Form::text('Producto',$progressVulcanizado->Producto, ['class' => 'form-control' . ($errors->has('Producto') ? ' is-invalid' : ''), 'placeholder' => 'Producto']) }}
                     {!! $errors->first('Producto', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
@@ -36,17 +43,11 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('nota') }}
-                    {{ Form::text('nota', $progressVulcanizado->nota, ['class' => 'form-control' . ($errors->has('nota') ? ' is-invalid' : ''), 'placeholder' => 'Nota']) }}
+                    {{ Form::textarea('nota', $progressVulcanizado->nota, ['class' => 'form-control' . ($errors->has('nota') ? ' is-invalid' : ''), 'placeholder' => 'Nota']) }}
                     {!! $errors->first('nota', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
-            <div class="col">
-                <div class="form-group">
-                    {{ Form::label('fecha') }}
-                    {{ Form::text('fecha', $progressVulcanizado->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
-                    {!! $errors->first('fecha', '<div class="invalid-feedback">:message</div>') !!}
-                </div>
-            </div>
+
         </div>
     </div>
     <div class="box-footer mt-2">

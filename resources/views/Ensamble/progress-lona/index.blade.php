@@ -9,7 +9,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Lona') }}
+                                {{ __('Lonas y Vulcanizado') }}
                             </span>
                             <div class="float-right">
                                 @auth
@@ -58,7 +58,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-											<td>{{ $progressLona->finishedProduct_id }}</td>
+											<td>{{ $progressLona->Producto }}</td>
 											<td>{{ $progressLona->cantidad }}</td>
 											<td>{{ $progressLona->status }}</td>
 											<td>{{ $progressLona->encargado }}</td>
@@ -68,14 +68,14 @@
                                                 @auth
                                                     @if (auth()->user()->role === '1')
                                                         <form
-                                                            action="{{ route('progress-lonas.destroy',$progressLona->id) }}"
+                                                            action="{{ route('progress-lona.destroy',$progressLona->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
-                                                                href="{{ route('progress-lonas.show',$progressLona->id) }}">
+                                                                href="{{ route('progress-lona.show',$progressLona->id) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </a>
                                                             <a class="btn btn-sm btn-success"
-                                                                href="{{ route('progress-lonas.edit',$progressLona->id) }}">
+                                                                href="{{ route('progress-lona.edit',$progressLona->id) }}">
                                                                 <i class="bi bi-pencil-fill"></i>
                                                             </a>
                                                             @csrf
@@ -87,10 +87,10 @@
                                                     @endif
                                                     @if (auth()->user()->role === '3')
                                                         <form
-                                                            action="{{ route('progress-lonas.destroy',$progressLona->id) }}"
+                                                            action="{{ route('progress-lona.destroy',$progressLona->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
-                                                                href="{{ route('progress-lonas.show',$progressLona->id) }}">
+                                                                href="{{ route('progress-lona.show',$progressLona->id) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </a>
                                                             @csrf

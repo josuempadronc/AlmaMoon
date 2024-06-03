@@ -116,7 +116,9 @@
                                                     <a class="nav-link p-2 mb-2"
                                                         href="{{ URL::to('progress-serigrafium') }}">{{ __('Serigrafia') }}</a>
                                                     <a class="nav-link p-2 mb-2"
-                                                        href="{{ URL::to('progress-vulcanizado') }}">{{ __('Vulcanizado') }}</a>
+                                                        href="{{ URL::to('progress-vulcanizado') }}">{{ __('Tapizado') }}</a>
+                                                    <a class="nav-link p-2 mb-2"
+                                                        href="{{ URL::to('progress-costura') }}">{{ __('Costura') }}</a>
                                                 </div>
                                             </div>
 										</div>

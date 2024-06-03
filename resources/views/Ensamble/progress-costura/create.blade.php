@@ -14,7 +14,7 @@
                             <div class="float-right">
                                 <div class="float-right">
                                     <div class="float-right">
-                                        <a class="btn btn-primary" href="{{ route('progress-assambly.index') }}">
+                                        <a class="btn btn-primary" href="{{ route('progress-costura.index') }}">
                                             <i class="bi bi-backspace"></i>
                                         </a>
                                     </div>
@@ -23,10 +23,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('progress-assambly.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('progress-costura.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('Ensamble/progress-assambly.form')
+                            @include('Ensamble/progress-costura.form')
 
                         </form>
                     </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class ProgressLona
  *
  * @property $id
- * @property $finishedProduct_id
+ * @property $Producto
  * @property $cantidad
  * @property $status
  * @property $encargado
@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
- * @property FinishedProduct $finishedProduct
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -25,6 +24,7 @@ class ProgressLona extends Model
 {
     
     static $rules = [
+		'Producto' => 'required',
 		'cantidad' => 'required',
 		'status' => 'required',
 		'encargado' => 'required',
@@ -39,16 +39,8 @@ class ProgressLona extends Model
      *
      * @var array
      */
-    protected $fillable = ['finishedProduct_id','cantidad','status','encargado','nota','fecha'];
+    protected $fillable = ['Producto','cantidad','status','encargado','nota','fecha'];
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function finishedProduct()
-    {
-        return $this->hasOne('App\Models\FinishedProduct', 'id', 'finishedProduct_id');
-    }
-    
 
 }

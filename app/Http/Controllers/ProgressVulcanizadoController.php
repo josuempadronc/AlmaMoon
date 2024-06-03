@@ -47,8 +47,8 @@ class ProgressVulcanizadoController extends Controller
 
         $progressVulcanizado = ProgressVulcanizado::create($request->all());
 
-        return redirect()->route('Ensamble/progress-vulcanizados.index')
-            ->with('success', 'ProgressVulcanizado created successfully.');
+        return redirect()->route('progress-vulcanizado.index')
+            ->with('success', 'Progreso Creado.');
     }
 
     /**
@@ -90,8 +90,8 @@ class ProgressVulcanizadoController extends Controller
 
         $progressVulcanizado->update($request->all());
 
-        return redirect()->route('Ensamble/progress-vulcanizados.index')
-            ->with('success', 'ProgressVulcanizado updated successfully');
+        return redirect()->route('progress-vulcanizado.index')
+            ->with('success', 'Progreso Actualizado');
     }
 
     /**
@@ -103,7 +103,7 @@ class ProgressVulcanizadoController extends Controller
     {
         $progressVulcanizado = ProgressVulcanizado::find($id)->delete();
 
-        return redirect()->route('Ensamble/progress-vulcanizados.index')
-            ->with('success', 'ProgressVulcanizado deleted successfully');
+        return redirect()->route('progress-vulcanizado.index')
+            ->with('success', 'Progreso Eliminado');
     }
 }

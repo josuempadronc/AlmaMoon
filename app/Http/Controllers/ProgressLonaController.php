@@ -47,8 +47,8 @@ class ProgressLonaController extends Controller
 
         $progressLona = ProgressLona::create($request->all());
 
-        return redirect()->route('Ensamble/progress-lonas.index')
-            ->with('success', 'ProgressLona created successfully.');
+        return redirect()->route('progress-lona.index')
+            ->with('success', 'Progreso Creado.');
     }
 
     /**
@@ -90,8 +90,8 @@ class ProgressLonaController extends Controller
 
         $progressLona->update($request->all());
 
-        return redirect()->route('Ensamble/progress-lonas.index')
-            ->with('success', 'ProgressLona updated successfully');
+        return redirect()->route('progress-lona.index')
+            ->with('success', 'Progreso Actualizado');
     }
 
     /**
@@ -103,7 +103,7 @@ class ProgressLonaController extends Controller
     {
         $progressLona = ProgressLona::find($id)->delete();
 
-        return redirect()->route('Ensamble/progress-lonas.index')
-            ->with('success', 'ProgressLona deleted successfully');
+        return redirect()->route('progress-lonas.index')
+            ->with('success', 'Progreso Eliminado');
     }
 }

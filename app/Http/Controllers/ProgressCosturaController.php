@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProgressSerigrafium;
+use App\Models\ProgressCostura;
 use Illuminate\Http\Request;
 
 /**
- * Class ProgressSerigrafiumController
+ * Class ProgressCosturaController
  * @package App\Http\Controllers
  */
-class ProgressSerigrafiumController extends Controller
+class ProgressCosturaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class ProgressSerigrafiumController extends Controller
      */
     public function index()
     {
-        $progressSerigrafia = ProgressSerigrafium::paginate();
+        $progressCosturas = ProgressCostura::paginate();
 
-        return view('Ensamble/progress-serigrafium.index', compact('progressSerigrafia'))
-            ->with('i', (request()->input('page', 1) - 1) * $progressSerigrafia->perPage());
+        return view('Ensamble/progress-costura.index', compact('progressCosturas'))
+            ->with('i', (request()->input('page', 1) - 1) * $progressCosturas->perPage());
     }
 
     /**
@@ -31,8 +31,8 @@ class ProgressSerigrafiumController extends Controller
      */
     public function create()
     {
-        $progressSerigrafium = new ProgressSerigrafium();
-        return view('Ensamble/progress-serigrafium.create', compact('progressSerigrafium'));
+        $progressCostura = new ProgressCostura();
+        return view('Ensamble/progress-costura.create', compact('progressCostura'));
     }
 
     /**
@@ -43,11 +43,11 @@ class ProgressSerigrafiumController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(ProgressSerigrafium::$rules);
+        request()->validate(ProgressCostura::$rules);
 
-        $progressSerigrafium = ProgressSerigrafium::create($request->all());
+        $progressCostura = ProgressCostura::create($request->all());
 
-        return redirect()->route('progress-serigrafium.index')
+        return redirect()->route('progress-costura.index')
             ->with('success', 'Progreso Creado.');
     }
 
@@ -59,9 +59,9 @@ class ProgressSerigrafiumController extends Controller
      */
     public function show($id)
     {
-        $progressSerigrafium = ProgressSerigrafium::find($id);
+        $progressCostura = ProgressCostura::find($id);
 
-        return view('Ensamble/progress-serigrafium.show', compact('progressSerigrafium'));
+        return view('Ensamble/progress-costura.show', compact('progressCostura'));
     }
 
     /**
@@ -72,25 +72,25 @@ class ProgressSerigrafiumController extends Controller
      */
     public function edit($id)
     {
-        $progressSerigrafium = ProgressSerigrafium::find($id);
+        $progressCostura = ProgressCostura::find($id);
 
-        return view('Ensamble/progress-serigrafium.edit', compact('progressSerigrafium'));
+        return view('Ensamble/progress-costura.edit', compact('progressCostura'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  ProgressSerigrafium $progressSerigrafium
+     * @param  ProgressCostura $progressCostura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProgressSerigrafium $progressSerigrafium)
+    public function update(Request $request, ProgressCostura $progressCostura)
     {
-        request()->validate(ProgressSerigrafium::$rules);
+        request()->validate(ProgressCostura::$rules);
 
-        $progressSerigrafium->update($request->all());
+        $progressCostura->update($request->all());
 
-        return redirect()->route('progress-serigrafium.index')
+        return redirect()->route('progress-costura.index')
             ->with('success', 'Progreso Actualizado');
     }
 
@@ -101,9 +101,9 @@ class ProgressSerigrafiumController extends Controller
      */
     public function destroy($id)
     {
-        $progressSerigrafium = ProgressSerigrafium::find($id)->delete();
+        $progressCostura = ProgressCostura::find($id)->delete();
 
-        return redirect()->route('progress-serigrafium.index')
+        return redirect()->route('progress-costura.index')
             ->with('success', 'Progreso Eliminado');
     }
 }

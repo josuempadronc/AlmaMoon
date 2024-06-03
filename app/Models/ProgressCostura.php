@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ProgressSerigrafium
+ * Class ProgressCostura
  *
  * @property $id
  * @property $Producto
@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class ProgressSerigrafium extends Model
+class ProgressCostura extends Model
 {
     
     static $rules = [

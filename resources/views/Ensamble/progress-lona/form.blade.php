@@ -3,15 +3,22 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
+                    {{ Form::label('fecha') }}
+                    {{ Form::date('fecha', $progressLona->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
+                    {!! $errors->first('fecha', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
                     {{ Form::label('Producto') }}
-                    {{ Form::text('finishedProduct_id', $progressLona->finishedProduct_id, ['class' => 'form-control' . ($errors->has('finishedProduct_id') ? ' is-invalid' : ''), 'placeholder' => 'Finishedproduct Id']) }}
-                    {!! $errors->first('finishedProduct_id', '<div class="invalid-feedback">:message</div>') !!}
+                    {{ Form::text('Producto',$progressLona->Producto, ['class' => 'form-control' . ($errors->has('Producto') ? ' is-invalid' : ''), 'placeholder' => 'Producto']) }}
+                    {!! $errors->first('Producto', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('cantidad') }}
-                    {{ Form::num('cantidad', $progressLona->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad']) }}
+                    {{ Form::text('cantidad', $progressLona->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad']) }}
                     {!! $errors->first('cantidad', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
@@ -36,17 +43,11 @@
             <div class="col">
                 <div class="form-group">
                     {{ Form::label('nota') }}
-                    {{ Form::text('nota', $progressLona->nota, ['class' => 'form-control' . ($errors->has('nota') ? ' is-invalid' : ''), 'placeholder' => 'Nota']) }}
+                    {{ Form::textarea('nota', $progressLona->nota, ['class' => 'form-control' . ($errors->has('nota') ? ' is-invalid' : ''), 'placeholder' => 'Nota']) }}
                     {!! $errors->first('nota', '<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
-            <div class="col">
-                <div class="form-group">
-                    {{ Form::label('fecha') }}
-                    {{ Form::date('fecha', $progressLona->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
-                    {!! $errors->first('fecha', '<div class="invalid-feedback">:message</div>') !!}
-                </div>
-            </div>
+
         </div>
     </div>
     <div class="box-footer mt-2">

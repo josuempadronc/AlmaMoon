@@ -26,7 +26,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="formGroupExampleInput" class="form-label">Producto</label>
-                                        <input type="text" class="form-control" value=" {{ $progressLona->finishedProduct_id }}" disabled readonly>
+                                        <input type="text" class="form-control" value=" {{ $progressLona->Producto }}" disabled readonly>
                                     </div>
                                 </div>
                                 <div class="col">

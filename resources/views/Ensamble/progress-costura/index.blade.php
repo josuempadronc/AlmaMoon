@@ -9,18 +9,18 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Tapizado') }}
+                                {{ __('Costura') }}
                             </span>
                             <div class="float-right">
                                 @auth
                                     @if (auth()->user()->role === '1')
-                                        <a href="{{ route('progress-vulcanizado.create') }}"
+                                        <a href="{{ route('progress-costura.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     @endif
                                     @if (auth()->user()->role === '3')
-                                        <a href="{{ route('progress-vulcanizado.create') }}"
+                                        <a href="{{ route('progress-costura.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
@@ -37,45 +37,42 @@
 
                     <div class="card-body" style=" height: 600px !important; overflow: auto;">
                         <div class="table-responsive">
-                            @if (count($progressVulcanizados) !== 0)
+                            @if (count($progressCosturas) !== 0)
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
-										<th>Producto</th>
-										<th>Cantidad</th>
-										<th>Status</th>
-										<th>Encargado</th>
-										<th>Nota</th>
-										<th>Fecha</th>
-
+                                        <th>Fecha</th>
+                                        <th>Producto</th>
+                                        <th>Status</th>
+                                        <th>Nota</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($progressVulcanizados as $progressVulcanizado)
+                                    @foreach ($progressCosturas as $progressCostura)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-											<td>{{ $progressVulcanizado->finishedProduct_id }}</td>
-											<td>{{ $progressVulcanizado->cantidad }}</td>
-											<td>{{ $progressVulcanizado->status }}</td>
-											<td>{{ $progressVulcanizado->encargado }}</td>
-											<td>{{ $progressVulcanizado->nota }}</td>
-											<td>{{ $progressVulcanizado->fecha }}</td>
+											<td>{{ $progressCostura->Producto }}</td>
+											<td>{{ $progressCostura->cantidad }}</td>
+											<td>{{ $progressCostura->status }}</td>
+											<td>{{ $progressCostura->encargado }}</td>
+											<td>{{ $progressCostura->nota }}</td>
+											<td>{{ $progressCostura->fecha }}</td>
+
                                             <td>
                                                 @auth
                                                     @if (auth()->user()->role === '1')
                                                         <form
-                                                            action="{{ route('progress-vulcanizado.destroy',$progressVulcanizado->id) }}"
+                                                            action="{{ route('progress-costura.destroy',$progressCostura->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
-                                                                href="{{ route('progress-vulcanizado.show',$progressVulcanizado->id) }}">
+                                                                href="{{ route('progress-costura.show',$progressCostura->id) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </a>
                                                             <a class="btn btn-sm btn-success"
-                                                                href="{{route('progress-vulcanizado.edit',$progressVulcanizado->id) }}">
+                                                                href="{{route('progress-costura.edit',$progressCostura->id) }}">
                                                                 <i class="bi bi-pencil-fill"></i>
                                                             </a>
                                                             @csrf
@@ -87,10 +84,10 @@
                                                     @endif
                                                     @if (auth()->user()->role === '3')
                                                         <form
-                                                            action="{{ route('progress-vulcanizado.destroy',$progressVulcanizado->id) }}"
+                                                            action="{{ route('progress-costura.destroy',$progressCostura->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
-                                                                href="{{ route('assembly-vulcanizado.show', $progressVulcanizado->id) }}">
+                                                                href="{{ route('progress-costura.show', $progressCostura->id) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </a>
                                                             @csrf
@@ -102,6 +99,7 @@
                                                     @endif
                                                 @endauth
                                             </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -111,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- {!! $progressVulcanizados->links() !!} --}}
+                {!! $progressCosturas->links() !!}
             </div>
         </div>
     </div>

@@ -39,43 +39,39 @@
                         <div class="table-responsive">
                             @if (count($progressAssamblies) !== 0)
                                 <table class="table table-striped table-hover">
-                                    <thead class="thead">
+                                    <thead class="thead text-center">
                                         <tr>
                                             <th>No</th>
-
-                                            <th>Producto</th>
-                                            <th>Cantidad</th>
-                                            <th>Status</th>
-                                            <th>Encargado</th>
-                                            <th>Nota</th>
                                             <th>Fecha</th>
-
+                                            <th>Producto</th>
+                                            <th>Status</th>
+                                            <th>Nota</th>
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="text-center">
                                         @foreach ($progressAssamblies as $progressAssambly)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
-
-                                                <td>{{ $progressAssambly->finishedProduct->name }}</td>
-                                                <td>{{ $progressAssambly->cantidad }}</td>
-                                                <td>{{ $progressAssambly->status }}</td>
-                                                <td>{{ $progressAssambly->encargado }}</td>
-                                                <td>{{ $progressAssambly->nota }}</td>
                                                 <td>{{ $progressAssambly->fecha }}</td>
+                                                <td>{{ $progressAssambly->Producto}}</td>
+                                                {{-- <td>{{ $progressAssambly->cantidad }}</td> --}}
+                                                <td>{{ $progressAssambly->status }}</td>
+                                                {{-- <td>{{ $progressAssambly->encargado }}</td> --}}
+                                                <td>{{ $progressAssambly->nota }}</td>
+
                                                 <td>
                                                     @auth
                                                         @if (auth()->user()->role === '1')
                                                             <form
-                                                                action="{{ route('progress-assamblies.destroy',$progressAssambly->id) }}"
+                                                                action="{{ route('progress-assambly.destroy',$progressAssambly->id) }}"
                                                                 method="POST">
                                                                 <a class="btn btn-sm btn-primary "
-                                                                    href="{{ route('progress-assamblies.show',$progressAssambly->id) }}">
+                                                                    href="{{ route('progress-assambly.show',$progressAssambly->id) }}">
                                                                     <i class="bi bi-eye-fill"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-success"
-                                                                    href="{{route('progress-assamblies.edit',$progressAssambly->id) }}">
+                                                                    href="{{route('progress-assambly.edit',$progressAssambly->id) }}">
                                                                     <i class="bi bi-pencil-fill"></i>
                                                                 </a>
                                                                 @csrf
@@ -87,10 +83,10 @@
                                                         @endif
                                                         @if (auth()->user()->role === '3')
                                                             <form
-                                                                action="{{ route('progress-assamblies.destroy',$progressAssambly->id) }}"
+                                                                action="{{ route('progress-assambly.destroy',$progressAssambly->id) }}"
                                                                 method="POST">
                                                                 <a class="btn btn-sm btn-primary "
-                                                                    href="{{ route('assembly-assamblies.show', $assemblyAccessory->id) }}">
+                                                                    href="{{ route('progress-assambly.show', $progressAssambly->id) }}">
                                                                     <i class="bi bi-eye-fill"></i>
                                                                 </a>
                                                                 @csrf

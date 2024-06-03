@@ -41,14 +41,11 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
-										<th>Producto</th>
-										<th>Cantidad</th>
-										<th>Status</th>
-										<th>Encargado</th>
-										<th>Nota</th>
-										<th>Fecha</th>
-
+                                            <th>Fecha</th>
+                                            <th>Producto</th>
+                                            <th>Status</th>
+                                            <th>Nota</th>
+                                            <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -56,25 +53,24 @@
                                     @foreach ($progressSerigrafia as $progressSerigrafium)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-											<td>{{ $progressSerigrafium->producto}}</td>
-											<td>{{ $progressSerigrafium->cantidad }}</td>
-											<td>{{ $progressSerigrafium->status }}</td>
-											<td>{{ $progressSerigrafium->encargado }}</td>
-											<td>{{ $progressSerigrafium->nota }}</td>
-											<td>{{ $progressSerigrafium->fecha }}</td>
+                                            <td>{{ $progressSerigrafium->fecha }}</td>
+                                            <td>{{ $progressSerigrafium->Producto}}</td>
+                                            {{-- <td>{{ $progressSerigrafium->cantidad }}</td> --}}
+                                            <td>{{ $progressSerigrafium->status }}</td>
+                                            {{-- <td>{{ $progressSerigrafium->encargado }}</td> --}}
+                                            <td>{{ $progressSerigrafium->nota }}</td>
                                             <td>
                                                 @auth
                                                     @if (auth()->user()->role === '1')
                                                         <form
-                                                            action="{{ route('progress-serigrafium.destroy',$progressAssambly->id) }}"
+                                                            action="{{ route('progress-serigrafium.destroy',$progressSerigrafium->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
-                                                                href="{{ route('progress-serigrafium.show',$progressAssambly->id) }}">
+                                                                href="{{ route('progress-serigrafium.show',$progressSerigrafium->id) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </a>
                                                             <a class="btn btn-sm btn-success"
-                                                                href="{{route('progress-serigrafium.edit',$progressAssambly->id) }}">
+                                                                href="{{route('progress-serigrafium.edit',$progressSerigrafium->id) }}">
                                                                 <i class="bi bi-pencil-fill"></i>
                                                             </a>
                                                             @csrf
@@ -86,10 +82,10 @@
                                                     @endif
                                                     @if (auth()->user()->role === '3')
                                                         <form
-                                                            action="{{ route('progress-serigrafium.destroy',$progressAssambly->id) }}"
+                                                            action="{{ route('progress-serigrafium.destroy',$progressSerigrafium->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
-                                                                href="{{ route('assembly-serigrafium.show', $assemblyAccessory->id) }}">
+                                                                href="{{ route('assembly-serigrafium.show', $progressSerigrafium->id) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </a>
                                                             @csrf

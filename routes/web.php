@@ -107,6 +107,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('progress-lona', App\http\Controllers\ProgressLonaController::class)->middleware('auth');
             Route::resource('progress-serigrafium', App\http\Controllers\ProgressSerigrafiumController::class)->middleware('auth');
             Route::resource('progress-vulcanizado', App\http\Controllers\ProgressVulcanizadoController::class)->middleware('auth');
+            Route::resource('progress-costura', App\http\Controllers\ProgressCosturaController::class)->middleware('auth');
+
         // End Ensamble
 
 });
