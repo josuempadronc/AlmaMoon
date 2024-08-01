@@ -72,7 +72,7 @@
                                     style="max-width: 15rem; height: 15rem;">
                                     <div class="card-header">Inyeccion</div>
                                     <div class="card-body">
-                                        <a href="">
+                                        <a href="inyeccion">
                                             <img class="" src="./images/2.png" alt=""
                                                 style="top: -10%;
                                             position: relative; width: 70% !important;">

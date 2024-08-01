@@ -14,7 +14,7 @@
                             <div class="float-right">
                                 <div class="float-right">
                                     <div class="float-right">
-                                        <a class="btn btn-primary" href="{{ route('assembly-movements.index') }}">
+                                        <a class="btn btn-primary" href="{{ route('inyecion-exit-products.index') }}">
                                             <i class="bi bi-backspace"></i>
                                         </a>
                                     </div>
@@ -23,11 +23,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('assembly-movements.store') }}" role="form"
-                            enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('inyecion-exit-products.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('Ensamble/assembly-movement.form')
+                            @include('Inyeccion/inyecion-exit-product.form')
 
                         </form>
                     </div>

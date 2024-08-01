@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('ensamble', function () {
             return view('./Dashboard/ensamble');
         });
+        Route::get('inyeccion', function () {
+            return view('./Dashboard/inyeccion');
+        });
         Route::get('estadistica', function () {
             return view('./statistics/statistics');
         });
@@ -110,6 +113,16 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('progress-costura', App\http\Controllers\ProgressCosturaController::class)->middleware('auth');
 
         // End Ensamble
+
+        // Inyeccion
+
+        Route::resource('inyecion-requests', App\Http\Controllers\InyecionRequestController::class)->middleware('auth');
+        Route::resource('inyecion-raw-materials', App\Http\Controllers\InyecionRawMaterialController::class)->middleware('auth');
+        Route::resource('inyecion-productions',App\Http\Controllers\InyecionProductionController ::class)->middleware('auth');
+        Route::resource('inyecion-order-p-roductions', App\http\Controllers\InyecionOrderPRoductionController::class)->middleware('auth');
+        Route::resource('inyecion-exit-products', App\http\Controllers\InyecionExitProductController::class)->middleware('auth');
+        Route::resource('inyecion-consumption-raws', App\http\Controllers\InyecionConsumptionRawController::class)->middleware('auth');
+        Route::resource('inyecion-consumption-semi-finisheds', App\http\Controllers\InyecionConsumptionSemiFinishedController::class)->middleware('auth');
 
 });
 

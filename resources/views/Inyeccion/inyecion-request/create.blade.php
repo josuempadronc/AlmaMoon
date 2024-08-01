@@ -10,11 +10,11 @@
                 <div class="card card-default">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="card-title"> Nuevo Movimiento</span>
+                            <span class="card-title"> Nuevo Requerimiento</span>
                             <div class="float-right">
                                 <div class="float-right">
                                     <div class="float-right">
-                                        <a class="btn btn-primary" href="{{ route('assembly-movements.index') }}">
+                                        <a class="btn btn-primary" href="{{ route('inyecion-requests.index') }}">
                                             <i class="bi bi-backspace"></i>
                                         </a>
                                     </div>
@@ -23,11 +23,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('assembly-movements.store') }}" role="form"
-                            enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('inyecion-requests.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('Ensamble/assembly-movement.form')
+                            @include('Inyeccion/inyecion-request.form')
 
                         </form>
                     </div>
