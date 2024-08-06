@@ -70,7 +70,7 @@ class InyecionConsumptionSemiFinishedController extends Controller
 
         $inyecionConsumptionSemiFinished = InyecionConsumptionSemiFinished::create($request->all());
 
-        return redirect()->route('inyecion-consumption-semi-finisheds.index')
+        return redirect()->route('inyecion-consumptionsemifinisheds.index')
             ->with('success', 'InyecionConsumptionSemiFinished created successfully.');
     }
 
@@ -129,7 +129,7 @@ class InyecionConsumptionSemiFinishedController extends Controller
 
         $inyecionConsumptionSemiFinished->update($request->all());
 
-        return redirect()->route('inyecion-consumption-semi-finisheds.index')
+        return redirect()->route('inyecion-consumptionsemifinisheds.index')
             ->with('success', 'InyecionConsumptionSemiFinished updated successfully');
     }
 
@@ -142,7 +142,7 @@ class InyecionConsumptionSemiFinishedController extends Controller
     {
         $inyecionConsumptionSemiFinished = InyecionConsumptionSemiFinished::find($id)->delete();
 
-        return redirect()->route('inyecion-consumption-semi-finisheds.index')
+        return redirect()->route('inyecion-consumptionsemifinisheds.index')
             ->with('success', 'InyecionConsumptionSemiFinished deleted successfully');
     }
 }

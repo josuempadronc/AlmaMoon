@@ -94,9 +94,10 @@
                                     style="max-width: 15rem; height: 15rem;">
                                     <div class="card-header">Molino</div>
                                     <div class="card-body">
-                                        <img class="w-100" src="./images/6.png" alt=""
-                                            style="top: -10%;
-                                        position: relative; width: 70% !important;">
+                                        <a href="molino">
+                                            <img class="w-100" src="./images/6.png" alt=""
+                                                style="top: -10%; position: relative; width: 70% !important;">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="card text-bg-info mb-3 mx-3 text-center fs-3 rounded-5"

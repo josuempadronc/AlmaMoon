@@ -155,6 +155,29 @@
 
                                         </div>
                                     </div>
+                                    {{-- Molino --}}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#molino" aria-expanded="false"
+                                                aria-controls="molino">
+                                                Molino
+                                            </button>
+                                        </h2>
+                                        <div id="molino" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordion_Ensamble">
+                                            <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('windmill-raw-receiveds') }}">{{ __('Material Recibido') }}</a>
+                                            <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('windmill-product-delivereds') }}">{{ __('Producto a Entregar') }}</a>
+                                            <p>Consumos</p>
+                                            <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('windmill-consumptions') }}">{{ __('Material') }}</a>
+                                            <p>Moviminetos</p>
+                                            <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('windmill-movements') }}">{{ __('Material') }}</a>
+                                        </div>
+                                    </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
@@ -473,11 +496,16 @@
                                     <a class="nav-link p-2 mb-2"
                                         href="{{ URL::to('inyecion-requests') }}">{{ __('Requerimiento') }}</a>
                                     <a class="nav-link p-2 mb-2"
-                                        href="{{ URL::to('product-sheats') }}">{{ __('Ficha Producto') }}</a>
+                                        href="{{ URL::to('inyecion-raw-materials') }}">{{ __('Materia Prima') }}</a>
                                     <a class="nav-link p-2 mb-2"
-                                        href="{{ URL::to('assembly-structures') }}">{{ __('Estructuras Metalicas') }}</a>
+                                        href="{{ URL::to('inyecion-productions') }}">{{ __('Productos Inyectados') }}</a>
                                     <a class="nav-link p-2 mb-2"
-                                        href="{{ URL::to('orders') }}">{{ __('Pedidos') }}</a>
+                                        href="{{ URL::to('inyecion-order-p-roductions') }}">{{ __('Orden de Produccion') }}</a>
+                                    <p>Consumos</p>
+                                    <a class="nav-link p-2 mb-2"
+                                        href="{{ URL::to('inyecion-consumption-semi-finisheds') }}">{{ __('Producto Semi-Terminado') }}</a>
+                                    <a class="nav-link p-2 mb-2"
+                                        href="{{ URL::to('inyecion-consumption-raws') }}">{{ __('Materia Prima') }}</a>
                                 </div>
                                 {{-- END LINK MENU --}}
                                 {{-- ACORDEON --}}
@@ -493,7 +521,7 @@
                                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                                             data-bs-parent="#accordionFlushExample">
                                             <a class="nav-link p-2 mb-2"
-                                                href="{{ URL::to('assembly-movements') }}">{{ __('Producto Terminado') }}</a>
+                                                href="{{ URL::to('inyecion-exit-products') }}">{{ __('Productos') }}</a>
                                             <a class="nav-link p-2 mb-2"
                                                 href="{{ URL::to('assembly-movement-inputs') }}">{{ __('Insumo') }}</a>
                                         </div>
@@ -567,6 +595,125 @@
                         </div>
                     </div>
                 @endif
+                {{-- Molino --}}
+                  @if (auth::user()->role === '5')
+                  <div class="col-auto" style=" height: 100vh !important; background-color: #152193 !important;">
+                      <div id="sidebar" class="collapse collapse-horizontal show ">
+                          {{-- LOGO --}}
+                          <a href="{{ url('molino') }}">
+                              <img src="/images/logoWhite.png" class="w-50 mt-2"
+                                  style="left: 15%; position: relative; width: 125px !important;">
+                          </a>
+                          {{-- END LOGO --}}
+                          {{-- SIDEBAR --}}
+
+                          <div id="sidebar-nav"
+                              class="list-group border-0 rounded-0 text-sm-start text-white max-vh-100 mx-3 mt-2"
+                              style="width: 180px; ">
+                              {{-- LINK MENU --}}
+                              <div class="p-2">
+                                  <a class="nav-link p-2 mb-2"
+                                      href="{{ URL::to('inyecion-requests') }}">{{ __('Requerimiento') }}</a>
+                                  <a class="nav-link p-2 mb-2"
+                                      href="{{ URL::to('inyecion-raw-materials') }}">{{ __('Materia Prima') }}</a>
+                                  <a class="nav-link p-2 mb-2"
+                                      href="{{ URL::to('inyecion-productions') }}">{{ __('Productos Inyectados') }}</a>
+                                  <a class="nav-link p-2 mb-2"
+                                      href="{{ URL::to('inyecion-order-p-roductions') }}">{{ __('Orden de Produccion') }}</a>
+                                  <p>Consumos</p>
+                                  <a class="nav-link p-2 mb-2"
+                                      href="{{ URL::to('inyecion-consumption-semi-finisheds') }}">{{ __('Producto Semi-Terminado') }}</a>
+                                  <a class="nav-link p-2 mb-2"
+                                      href="{{ URL::to('inyecion-consumption-raws') }}">{{ __('Materia Prima') }}</a>
+                              </div>
+                              {{-- END LINK MENU --}}
+                              {{-- ACORDEON --}}
+                              <div class="accordion accordion-flush bg-p" id="accordionFlushExample">
+                                  <div class="accordion-item">
+                                      <h2 class="accordion-header">
+                                          <button class="accordion-button collapsed" type="button"
+                                              data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                              aria-expanded="false" aria-controls="flush-collapseOne">
+                                              Moviminetos
+                                          </button>
+                                      </h2>
+                                      <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                          data-bs-parent="#accordionFlushExample">
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('inyecion-exit-products') }}">{{ __('Productos') }}</a>
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('assembly-movement-inputs') }}">{{ __('Insumo') }}</a>
+                                      </div>
+                                  </div>
+                                  <div class="accordion-item">
+                                      <h2 class="accordion-header">
+                                          <button class="accordion-button collapsed" type="button"
+                                              data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                              aria-expanded="false" aria-controls="flush-collapseTwo">
+                                              Configuracion
+                                          </button>
+                                      </h2>
+                                      <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                          data-bs-parent="#accordionFlushExample">
+                                          <a class="nav-link p-2 mb-2 mt-2"
+                                              href="{{ URL::to('color') }}">{{ __('Colores') }}</a>
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('destinations') }}">{{ __('Destinos') }}</a>
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('locations') }}">{{ __('Ubicaciones') }}</a>
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('measures') }}">{{ __('Unidades de Medidas') }}</a>
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('movement-details') }}">{{ __('Detalles de Movimientos') }}</a>
+                                          {{-- <a class="nav-link p-2 mb-2"
+                                          href="{{ URL::to('origins') }}">{{ __('Origen') }}</a> --}}
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('paws') }}">{{ __('Patas') }}</a>
+                                          {{-- <a class="nav-link p-2 mb-2"
+                                          href="{{ URL::to('suppliers') }}">{{ __('Proveedores') }}</a> --}}
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('type-movements') }}">{{ __('Tipos de Movimientos') }}</a>
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('assembly-accessories') }}">{{ __('Accesorio') }}</a>
+                                          <a class="nav-link p-2 mb-2"
+                                              href="{{ URL::to('product-type-assemblies') }}">{{ __('Tipo de Producto') }}</a>
+                                      </div>
+                                  </div>
+                                  <div style="">
+
+                                  </div>
+                                  <div class="accordion-item"
+                                      style="position: relative; display: block; margin-top: 20%;">
+                                      <h2 class="accordion-header">
+                                          <button class="accordion-button collapsed" type="button"
+                                              data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                              aria-expanded="false" aria-controls="flush-coll(apseThree">
+                                              {{ Auth::user()->name ?? 'login' }}
+                                          </button>
+                                      </h2>
+                                      <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                          data-bs-parent="#accordionFlushExample">
+                                          <a class="nav-link p-2 mb-2 mt-2" href="{{ route('logout') }}"
+                                              onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                                              <i class="bi bi-box-arrow-left mx-2"></i>
+                                              {{ __('Logout') }}
+
+                                          </a>
+
+                                          <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              class="d-none">
+                                              @csrf
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                              {{-- END ACORDEON --}}
+                          </div>
+                          {{-- END SIDEBAR --}}
+                      </div>
+                  </div>
+              @endif
             @else
                 <p>No has iniciado sesión.</p>
             @endauth

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
+// use App\Models\User;
 // use App\Http\Middleware\CheckRole;
 // use App\Helpers\CustomHelper;
 /*
@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('inyeccion', function () {
             return view('./Dashboard/inyeccion');
         });
+        Route::get('molino', function () {
+            return view('./Dashboard/molino');
+        });
         Route::get('estadistica', function () {
             return view('./statistics/statistics');
         });
@@ -50,7 +53,6 @@ Route::group(['middleware' => ['auth']], function () {
         // Calculadora de Productos
         Route::post('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats.calculator');
         Route::get('product-sheats/calculator/{id}', [App\http\Controllers\ProductSheatController::class, 'calculator'])->name('product-sheats.json');
-
         // End Calculadora de Productos
 
         // Import txt
@@ -69,7 +71,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/product-type-assemblies/import', [App\Http\Controllers\ProductTypeAssemblyController::class, 'import'])->name('ProductTypeAssembly.import');
         Route::post('/semi-finished-products/import', [App\Http\Controllers\SemiFinishedProductController::class, 'import'])->name('semi-finished-products.import');
         Route::post('/raw-materials/import', [App\Http\Controllers\RawMaterialController::class, 'import'])->name('raw-materials.import');
-
         // End Import txt
 
        // Almacen
@@ -91,11 +92,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('assembled-products', App\Http\Controllers\AssembledProductController::class)->middleware('auth');
         Route::resource('orders', App\Http\Controllers\OrderController::class)->middleware('auth');
         Route::resource('customer', \App\Http\Controllers\CustomerController::class)->middleware('auth');
-
         // End Almacen
 
         // Ensamble
-
         Route::resource('assembly-inputs', App\Http\Controllers\AssemblyInputController::class)->middleware('auth');
         Route::resource('assembly-structures', App\Http\Controllers\AssemblyStructureController::class)->middleware('auth');
         Route::resource('assembly-accessories',App\Http\Controllers\AssemblyAccessoryController::class)->middleware('auth');
@@ -105,24 +104,30 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('assembly-movement-inputs', App\http\Controllers\AssemblyMovementInputController::class)->middleware('auth');
         Route::resource('assembly-movement-inputs', App\http\Controllers\AssemblyMovementInputController::class)->middleware('auth');
 
-            // Progreso Productivo
-            Route::resource('progress-assambly', App\http\Controllers\ProgressAssamblyController::class)->middleware('auth');
-            Route::resource('progress-lona', App\http\Controllers\ProgressLonaController::class)->middleware('auth');
-            Route::resource('progress-serigrafium', App\http\Controllers\ProgressSerigrafiumController::class)->middleware('auth');
-            Route::resource('progress-vulcanizado', App\http\Controllers\ProgressVulcanizadoController::class)->middleware('auth');
-            Route::resource('progress-costura', App\http\Controllers\ProgressCosturaController::class)->middleware('auth');
-
+        // Progreso Productivo
+        Route::resource('progress-assambly', App\http\Controllers\ProgressAssamblyController::class)->middleware('auth');
+        Route::resource('progress-lona', App\http\Controllers\ProgressLonaController::class)->middleware('auth');
+        Route::resource('progress-serigrafium', App\http\Controllers\ProgressSerigrafiumController::class)->middleware('auth');
+        Route::resource('progress-vulcanizado', App\http\Controllers\ProgressVulcanizadoController::class)->middleware('auth');
+        Route::resource('progress-costura', App\http\Controllers\ProgressCosturaController::class)->middleware('auth');
         // End Ensamble
 
         // Inyeccion
-
         Route::resource('inyecion-requests', App\Http\Controllers\InyecionRequestController::class)->middleware('auth');
         Route::resource('inyecion-raw-materials', App\Http\Controllers\InyecionRawMaterialController::class)->middleware('auth');
         Route::resource('inyecion-productions',App\Http\Controllers\InyecionProductionController ::class)->middleware('auth');
         Route::resource('inyecion-order-p-roductions', App\http\Controllers\InyecionOrderPRoductionController::class)->middleware('auth');
         Route::resource('inyecion-exit-products', App\http\Controllers\InyecionExitProductController::class)->middleware('auth');
         Route::resource('inyecion-consumption-raws', App\http\Controllers\InyecionConsumptionRawController::class)->middleware('auth');
-        Route::resource('inyecion-consumption-semi-finisheds', App\http\Controllers\InyecionConsumptionSemiFinishedController::class)->middleware('auth');
+        Route::resource('inyecion-consumptionsemifinisheds', App\http\Controllers\InyecionConsumptionSemiFinishedController::class)->middleware('auth');
+        // End inyeccion
+
+        // Molino
+        Route::resource('windmill-raw-receiveds', App\Http\Controllers\WindmillRawReceivedController::class)->middleware('auth');
+        Route::resource('windmill-product-delivereds', App\Http\Controllers\WindmillProductDeliveredController::class)->middleware('auth');
+        Route::resource('windmill-movements',App\Http\Controllers\WindmillMovementController ::class)->middleware('auth');
+        Route::resource('windmill-consumptions', App\http\Controllers\WindmillConsumptionController::class)->middleware('auth');
+        // End Molino
 
 });
 
