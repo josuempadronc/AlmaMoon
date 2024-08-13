@@ -19,7 +19,7 @@
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     @endif
-                                    @if (auth()->user()->role === '4')
+                                    @if (auth()->user()->role === '3')
                                         <a href="{{ route('inyecion-exit-products.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
@@ -94,7 +94,7 @@
                                                                 </button>
                                                             </form>
                                                         @endif
-                                                        @if (auth()->user()->role === '4')
+                                                        @if (auth()->user()->role === '3')
                                                             <form
                                                                 action="{{ route('inyecion-exit-products.destroy', $inyecionExitProduct->id) }}"
                                                                 method="POST">

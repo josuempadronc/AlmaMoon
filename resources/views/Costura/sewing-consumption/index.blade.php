@@ -9,18 +9,18 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                Ordenes de Produccion
+                                Consumo de Materia Prima
                             </span>
                             <div class="float-right">
                                 @auth
                                     @if (auth()->user()->role === '1')
-                                        <a href="{{ route('inyecion-order-p-roductions.create') }}"
+                                        <a href="{{ route('sewing-consumptions.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     @endif
-                                    @if (auth()->user()->role === '3')
-                                        <a href="{{ route('inyecion-order-p-roductions.create') }}"
+                                    @if (auth()->user()->role === '4')
+                                        <a href="{{ route('sewing-consumptions.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
@@ -37,51 +37,52 @@
 
                     <div class="card-body" style=" height: 600px !important; overflow: auto;">
                         <div class="table-responsive">
-                            @if (count($inyecionOrderPRoductions) !== 0)
+                            @if (count($sewingConsumptions) !== 0)
                                 <table class="table table-striped table-hover">
                                     <thead class="thead">
                                     <tr>
                                         <th>No</th>
 
-										<th>Fecha</th>
-										<th>Orden</th>
-										<th>Producto</th>
-										<th>Color</th>
-										<th>Pata</th>
-										<th>Cantidad</th>
-										<th>Cantidad Terminada</th>
-										<th>Cantidad por Terminar </th>
-										<th>Observacion</th>
+                                        <th>Fecha</th>
+                                        <th>Tipo</th>
+                                        <th>Materia Prima</th>
+                                        <th>Cantidad por Rollo</th>
+                                        <th>Cantidad por Mts</th>
+                                        <th>Producto</th>
+                                        <th>Cantidad de Producto</th>
+                                        <th>Color</th>
+                                        <th>Tipo de Producto</th>
+                                        <th>Observacion</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($inyecionOrderPRoductions as $inyecionOrderPRoduction)
+                                    @foreach ($sewingConsumptions as $sewingConsumption)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-											<td>{{ $inyecionOrderPRoduction->date }}</td>
-											<td>{{ $inyecionOrderPRoduction->order }}</td>
-											<td>{{ $inyecionOrderPRoduction->finishedProduct->name }}</td>
-											<td>{{ $inyecionOrderPRoduction->colors->name }}</td>
-											<td>{{ $inyecionOrderPRoduction->paw->name }}</td>
-											<td>{{ $inyecionOrderPRoduction->amount }}</td>
-											<td>{{ $inyecionOrderPRoduction->amountToManofacture }}</td>
-											<td>{{ $inyecionOrderPRoduction->amountManofacture }}</td>
-											<td>{{ $inyecionOrderPRoduction->observation }}</td>
+                                            <td>{{ $sewingConsumption->date }}</td>
+                                            <td>{{ $sewingConsumption->typeMovement->name }}</td>
+                                            <td>{{ $sewingConsumption->rawMaterial->name }}</td>
+                                            <td>{{ $sewingConsumption->amount }}</td>
+                                            <td>{{ $sewingConsumption->Product }}</td>
+                                            <td>{{ $sewingConsumption->amountPro }}</td>
+                                            <td>{{ $sewingConsumption->color->name }}</td>
+                                            <td>{{ $sewingConsumption->TypeProduct }}</td>
+                                            <td>{{ $sewingConsumption->observation }}</td>
                                             <td>
                                                 @auth
                                                     @if (auth()->user()->role === '1')
                                                         <form
-                                                            action="{{ route('inyecion-order-p-roductions.destroy', $inyecionOrderPRoduction->id) }}"
+                                                            action="{{ route('sewing-consumptions.destroy', $sewingConsumption->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
-                                                                href="{{ route('inyecion-order-p-roductions.show', $inyecionOrderPRoduction->id) }}">
+                                                                href="{{ route('sewing-consumptions.show', $sewingConsumption->id) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </a>
                                                             <a class="btn btn-sm btn-success"
-                                                                href="{{ route('inyecion-order-p-roductions.edit', $inyecionOrderPRoduction->id) }}">
+                                                                href="{{ route('sewing-consumptions.edit', $sewingConsumption->id) }}">
                                                                 <i class="bi bi-pencil-fill"></i>
                                                             </a>
                                                             @csrf
@@ -91,12 +92,12 @@
                                                             </button>
                                                         </form>
                                                     @endif
-                                                    @if (auth()->user()->role === '3')
+                                                    @if (auth()->user()->role === '4')
                                                         <form
-                                                            action="{{ route('inyecion-order-p-roductions.destroy', $inyecionOrderPRoduction->id) }}"
+                                                            action="{{ route('sewing-consumptions.destroy', $sewingConsumption->id) }}"
                                                             method="POST">
                                                             <a class="btn btn-sm btn-primary "
-                                                                href="{{ route('inyecion-order-p-roductions.show', $inyecionOrderPRoduction->id) }}">
+                                                                href="{{ route('sewing-consumptions.show', $sewingConsumption->id) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </a>
                                                             @csrf
@@ -118,7 +119,8 @@
                         </div>
                     </div>
                 </div>
-F           </div>
+                {{-- {!! $sewingConsumptions->links() !!} --}}
+            </div>
         </div>
     </div>
 @endsection

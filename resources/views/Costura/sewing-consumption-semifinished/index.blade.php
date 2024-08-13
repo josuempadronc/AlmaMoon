@@ -9,24 +9,25 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                Requerimientos
+                                Cosumo de SemiTerminado
                             </span>
 
                             <div class="float-right">
                                 @auth
                                     @if (auth()->user()->role === '1')
-                                        <a href="{{ route('inyecion-requests.create') }}"
+                                        <a href="{{ route('sewing-consumption-semifinisheds.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     @endif
-                                    @if (auth()->user()->role === '3')
-                                        <a href="{{ route('inyecion-requests.create') }}"
+                                    @if (auth()->user()->role === '4')
+                                        <a href="{{ route('sewing-consumption-semifinisheds.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     @endif
                                 @endauth
+
                             </div>
                         </div>
                     </div>
@@ -38,53 +39,50 @@
 
                     <div class="card-body" style=" height: 600px !important; overflow: auto;">
                         <div class="table-responsive">
-                            @if (count($inyecionRequests) !== 0)
+                            @if (count($sewingConsumptionSemifinisheds) !== 0)
                                 <table class="table table-striped table-hover">
                                     <thead class="thead">
                                         <tr>
                                             <th>No</th>
 
                                             <th>Fecha</th>
-                                            <th>Tipo</th>
-                                            <th>Orden</th>
-                                            <th>Producto</th>
-                                            <th>Color</th>
-                                            <th>Patas</th>
+                                            <th>tipo</th>
+                                            <th>SemiTerminado</th>
                                             <th>Cantidad</th>
-                                            <th>Cantidad terminadas</th>
-                                            <th>Cantidad por terminar</th>
+                                            <th>Producto</th>
+                                            <th>Cantidad de Producto </th>
+                                            <th>Color</th>
                                             <th>Observacion</th>
 
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($inyecionRequests as $inyecionRequest)
+                                        @foreach ($sewingConsumptionSemifinisheds as $sewingConsumptionSemifinished)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
 
-                                                <td>{{ $inyecionRequest->date }}</td>
-                                                <td>{{ $inyecionRequest->typeMovement->name }}</td>
-                                                <td>{{ $inyecionRequest->order }}</td>
-                                                <td>{{ $inyecionRequest->finishedProduct->name }}</td>
-                                                <td>{{ $inyecionRequest->colors->name }}</td>
-                                                <td>{{ $inyecionRequest->paw->name }}</td>
-                                                <td>{{ $inyecionRequest->amount }}</td>
-                                                <td>{{ $inyecionRequest->amountToManofacture }}</td>
-                                                <td>{{ $inyecionRequest->amountManofacture }}</td>
-                                                <td>{{ $inyecionRequest->observation }}</td>
+                                                <td>{{ $sewingConsumptionSemifinished->date }}</td>
+                                                <td>{{ $sewingConsumptionSemifinished->typeMovement->name }}</td>
+                                                <td>{{ $sewingConsumptionSemifinished->SemifinishedProduct->name }}</td>
+                                                <td>{{ $sewingConsumptionSemifinished->amount }}</td>
+                                                <td>{{ $sewingConsumptionSemifinished->Product }}</td>
+                                                <td>{{ $sewingConsumptionSemifinished->amountPro }}</td>
+                                                <td>{{ $sewingConsumptionSemifinished->color->name }}</td>
+                                                <td>{{ $sewingConsumptionSemifinished->observation }}</td>
+
                                                 <td>
                                                     @auth
                                                         @if (auth()->user()->role === '1')
                                                             <form
-                                                                action="{{ route('inyecion-requests.destroy', $inyecionRequest->id) }}"
+                                                                action="{{ route('sewing-consumption-semifinisheds.destroy', $sewingConsumptionSemifinished->id) }}"
                                                                 method="POST">
                                                                 <a class="btn btn-sm btn-primary "
-                                                                    href="{{ route('inyecion-requests.show', $inyecionRequest->id) }}">
+                                                                    href="{{ route('sewing-consumption-semifinisheds.show', $sewingConsumptionSemifinished->id) }}">
                                                                     <i class="bi bi-eye-fill"></i>
                                                                 </a>
                                                                 <a class="btn btn-sm btn-success"
-                                                                    href="{{ route('inyecion-requests.edit', $inyecionRequest->id) }}">
+                                                                    href="{{ route('sewing-consumption-semifinisheds.edit', $sewingConsumptionSemifinished->id) }}">
                                                                     <i class="bi bi-pencil-fill"></i>
                                                                 </a>
                                                                 @csrf
@@ -94,12 +92,12 @@
                                                                 </button>
                                                             </form>
                                                         @endif
-                                                        @if (auth()->user()->role === '3')
+                                                        @if (auth()->user()->role === '4')
                                                             <form
-                                                                action="{{ route('inyecion-requests.destroy', $inyecionRequest->id) }}"
+                                                                action="{{ route('sewing-consumption-semifinisheds.destroy', $sewingConsumptionSemifinished->id) }}"
                                                                 method="POST">
                                                                 <a class="btn btn-sm btn-primary "
-                                                                    href="{{ route('inyecion-requests.show', $inyecionRequest->id) }}">
+                                                                    href="{{ route('sewing-consumption-semifinisheds.show', $sewingConsumptionSemifinished->id) }}">
                                                                     <i class="bi bi-eye-fill"></i>
                                                                 </a>
                                                                 @csrf

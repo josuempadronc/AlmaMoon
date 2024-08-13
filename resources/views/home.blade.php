@@ -113,9 +113,11 @@
                                     style="max-width: 15rem; height: 15rem;">
                                     <div class="card-header">Costura</div>
                                     <div class="card-body">
-                                        <img class="w-100" src="./images/7.png" alt=""
-                                            style="top: -10%;
+                                        <a href="costura">
+                                            <img class="w-100" src="./images/7.png" alt=""
+                                                style="top: -10%;
                                         position: relative; width: 70% !important;">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="card text-bg-dark mb-3 mx-3 text-center fs-3 rounded-5"

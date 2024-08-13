@@ -37,6 +37,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('molino', function () {
             return view('./Dashboard/molino');
         });
+        Route::get('costura', function () {
+            return view('./Dashboard/costura');
+        });
         Route::get('estadistica', function () {
             return view('./statistics/statistics');
         });
@@ -129,5 +132,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('windmill-consumptions', App\http\Controllers\WindmillConsumptionController::class)->middleware('auth');
         // End Molino
 
+        // Costura
+        Route::resource('sewing-raw-materials', App\Http\Controllers\SewingRawMaterialController::class)->middleware('auth');
+        Route::resource('sewing-movements', App\Http\Controllers\SewingMovementController::class)->middleware('auth');
+        Route::resource('sewing-consumption-semifinisheds',App\Http\Controllers\SewingConsumptionSemifinishedController ::class)->middleware('auth');
+        Route::resource('sewing-consumptions', App\http\Controllers\SewingConsumptionController::class)->middleware('auth');
+        // End Costura
 });
 

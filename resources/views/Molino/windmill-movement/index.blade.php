@@ -19,7 +19,7 @@
                                             <i class="bi bi-plus-circle"></i>
                                         </a>
                                     @endif
-                                    @if (auth()->user()->role === '5')
+                                    @if (auth()->user()->role === '3')
                                         <a href="{{ route('windmill-movements.create') }}"
                                             class="btn btn-primary btn-sm float-right" data-placement="left">
                                             <i class="bi bi-plus-circle"></i>
@@ -91,7 +91,7 @@
                                                                 </button>
                                                             </form>
                                                         @endif
-                                                        @if (auth()->user()->role === '5')
+                                                        @if (auth()->user()->role === '3')
                                                             <form
                                                                 action="{{ route('windmill-movements.destroy', $windmillMovement->id) }}"
                                                                 method="POST">
