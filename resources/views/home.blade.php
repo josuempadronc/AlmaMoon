@@ -104,9 +104,10 @@
                                     style="max-width: 15rem; height: 15rem;">
                                     <div class="card-header">Metal-Mecanica</div>
                                     <div class="card-body">
-                                        <img class="w-100" src="./images/10.png" alt=""
-                                            style="top: -10%;
-                                        position: relative; width: 70% !important;">
+                                        <a href="metalMecanica">
+                                            <img class="w-100" src="./images/10.png" alt=""
+                                                style="top: -10%; position: relative; width: 70% !important;">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="card text-bg-light mb-3 mx-3 text-center fs-3 rounded-5"

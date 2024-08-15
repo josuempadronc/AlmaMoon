@@ -40,6 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('costura', function () {
             return view('./Dashboard/costura');
         });
+        Route::get('metalMecanica', function () {
+            return view('./Dashboard/metalMecanica');
+        });
         Route::get('estadistica', function () {
             return view('./statistics/statistics');
         });
@@ -138,5 +141,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('sewing-consumption-semifinisheds',App\Http\Controllers\SewingConsumptionSemifinishedController ::class)->middleware('auth');
         Route::resource('sewing-consumptions', App\http\Controllers\SewingConsumptionController::class)->middleware('auth');
         // End Costura
+
+         // Metal Mecanica
+         Route::resource('mechanics-products', App\Http\Controllers\MechanicsProductController::class)->middleware('auth');
+         Route::resource('mechanics-semifinisheds', App\Http\Controllers\MechanicsSemifinishedController::class)->middleware('auth');
+         Route::resource('mechanics-movements',App\Http\Controllers\MechanicsMovementController ::class)->middleware('auth');
+         Route::resource('mechanicsconsumptionsemifinisheds', App\http\Controllers\MechanicsConsumptionSemifinishedController::class)->middleware('auth');
+         Route::resource('mechanics-consumptions', App\http\Controllers\MechanicsConsumptionController::class)->middleware('auth');
+         // End Metal Mecanica
 });
 
