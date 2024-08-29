@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('metalMecanica', function () {
             return view('./Dashboard/metalMecanica');
         });
+        Route::get('pintura', function () {
+            return view('./Dashboard/pintura');
+        });
         Route::get('estadistica', function () {
             return view('./statistics/statistics');
         });
@@ -149,5 +152,11 @@ Route::group(['middleware' => ['auth']], function () {
          Route::resource('mechanicsconsumptionsemifinisheds', App\http\Controllers\MechanicsConsumptionSemifinishedController::class)->middleware('auth');
          Route::resource('mechanics-consumptions', App\http\Controllers\MechanicsConsumptionController::class)->middleware('auth');
          // End Metal Mecanica
+
+         //Pintura
+         Route::resource('paint-movements', App\Http\Controllers\PaintMovementController::class)->middleware('auth');
+         Route::resource('paint-consumptions', App\Http\Controllers\PaintConsumptionController::class)->middleware('auth');
+         // End Pintura
 });
+
 

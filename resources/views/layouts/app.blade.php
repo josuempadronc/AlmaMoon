@@ -226,6 +226,29 @@
                                                 href="{{ URL::to('mechanics-movements') }}">{{ __('Materiales y Productos') }}</a>
                                         </div>
                                     </div>
+                                    {{-- Pintura --}}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#Pintura" aria-expanded="false"
+                                                aria-controls="Pintura">
+                                                Pintura
+                                            </button>
+                                        </h2>
+                                        <div id="Pintura" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordion_Ensamble">
+                                            {{-- <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('mechanics-products') }}">{{ __('Producto Terminado') }}</a>
+                                            <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('mechanics-semifinisheds') }}">{{ __('Producto Semi Terminado') }}</a> --}}
+                                            <p>Consumos</p>
+                                            <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('paint-movements') }}">{{ __('Materiales y Productos') }}</a>
+                                            <p>Movimientos</p>
+                                            <a class="nav-link p-2 mb-2"
+                                                href="{{ URL::to('paint-consumptions') }}">{{ __('Materiales y Productos') }}</a>
+                                        </div>
+                                    </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
@@ -871,7 +894,7 @@
                     <div class="col-auto" style=" height: 100vh !important; background-color: #152193 !important;">
                         <div id="sidebar" class="collapse collapse-horizontal show ">
                             {{-- LOGO --}}
-                            <a href="{{ url('metalMecanica') }}">
+                            <a href="{{ url('Pinturaanica') }}">
                                 <img src="/images/logoWhite.png" class="w-50 mt-2"
                                     style="left: 15%; position: relative; width: 125px !important;">
                             </a>
@@ -974,6 +997,37 @@
                                     </div>
                                 </div>
                                 {{-- END ACORDEON --}}
+                            </div>
+                            {{-- END SIDEBAR --}}
+                        </div>
+                    </div>
+                @endif
+                {{-- Pintura --}}
+                @if (auth::user()->role === '4')
+                    <div class="col-auto" style=" height: 100vh !important; background-color: #152193 !important;">
+                        <div id="sidebar" class="collapse collapse-horizontal show ">
+                            {{-- LOGO --}}
+                            <a href="{{ url('metalMecanica') }}">
+                                <img src="/images/logoWhite.png" class="w-50 mt-2"
+                                    style="left: 15%; position: relative; width: 125px !important;">
+                            </a>
+                            {{-- END LOGO --}}
+                            {{-- SIDEBAR --}}
+
+                            <div id="sidebar-nav"
+                                class="list-group border-0 rounded-0 text-sm-start text-white max-vh-100 mx-3 mt-2"
+                                style="width: 180px; ">
+                                {{-- LINK MENU --}}
+                                <div id="Pintura" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordion_Ensamble">
+                                    <p>Consumos</p>
+                                    <a class="nav-link p-2 mb-2"
+                                        href="{{ URL::to('paint-movements') }}">{{ __('Materiales y Productos') }}</a>
+                                    <p>Movimientos</p>
+                                    <a class="nav-link p-2 mb-2"
+                                        href="{{ URL::to('paint-consumptions') }}">{{ __('Materiales y Productos') }}</a>
+                                </div>
+                                {{-- END LINK MENU --}}
                             </div>
                             {{-- END SIDEBAR --}}
                         </div>

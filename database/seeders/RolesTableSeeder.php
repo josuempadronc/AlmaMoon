@@ -18,7 +18,7 @@ class RolesTableSeeder extends Seeder
             ['name' => 'Almacen'], //2
             ['name' => 'Inyeccion'], //3
             ['name' => 'Ensamble'], //4
-            ['name' => 'Transporte'], //5
+            ['name' => 'Pintura'], //5
             ['name' => 'Metal Mecanica'], //6
             ['name' => 'Mantenimiento'], //7
             ['name' => 'Recursos Humanos'], //8

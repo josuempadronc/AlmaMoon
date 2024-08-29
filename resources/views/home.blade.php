@@ -121,14 +121,16 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="card text-bg-dark mb-3 mx-3 text-center fs-3 rounded-5"
+                                <div class="card text-bg-warning mb-3 mx-3 text-center fs-3 rounded-5"
                                     style="max-width: 15rem; height: 15rem;">
-                                    <div class="card-header">RRHH</div>
+                                    <div class="card-header">Pintura</div>
                                     <div class="card-body">
-                                        <img class="w-100" src="./images/9.png" alt=""
-                                            style="top: -10%;
-                                        position: relative; width: 70% !important;">
+                                        <a href="pintura">
+                                            <img class="w-100" src="./images/3.png" alt=""
+                                                style="top: -10%;
+                                            position: relative; width: 70% !important;">
                                     </div>
+                                    </a>
                                 </div>
                                 <div class="card text-bg-light mb-3 mx-3 text-center fs-3 rounded-5"
                                     style="max-width: 15rem; height: 15rem;">
